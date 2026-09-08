@@ -5,690 +5,645 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#06090d">
   <meta name="description" content="Explore 64 genre-spanning Spotify playlists curated by Nagz.">
+  <meta name="playlist-metrics-endpoint" content="playlist-metrics.json">
   <title>Spotify Playlists by Nagz</title>
+  <link rel="preload" href="spotify.png" as="image">
   <link rel="preload" href="covers/01-im-the-protagonist.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#playlist-areas">Skip to playlists</a>
+  <a class="skip-link" href="#playlist-grid">Skip to playlists</a>
   <div class="ambient" aria-hidden="true"><div class="ambient-lights"></div><div class="ambient-lines"></div></div>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="Spotify Playlists by Nagz — home">
-      <span class="brand-mark" aria-hidden="true">♫</span>
+    <a class="brand" href="./" aria-label="Spotify Playlists by Nagz home">
+      <span class="brand-logo-frame" aria-hidden="true"><img class="brand-logo" src="spotify.png" alt="" width="40" height="40" decoding="async"></span>
       <span>Spotify Playlists by Nagz</span>
     </a>
-    <span class="topbar-meta">64 playlists · one listening map</span>
+    <span class="topbar-meta">64 playlists</span>
   </header>
   <main class="page">
-    <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow">A listening map</p>
-      <h1 id="page-title">Find your next frequency.</h1>
-      <p class="intro-copy">Sixty-four hand-built playlists, arranged by mood and sound. Every crossover keeps both colors—because the best music rarely stays in one lane.</p>
-      <div class="filters-wrap">
-        <p class="filters-label" id="result-label" aria-live="polite">64 playlists across every area</p>
-        <nav class="filters" aria-label="Filter playlists by area"><button class="filter" type="button" data-filter="all" aria-pressed="true" style="--filter-color:#1ed760">All areas</button>
-<button class="filter" type="button" data-filter="chill" aria-pressed="false" style="--filter-color:#53dfd0">chill</button>
-<button class="filter" type="button" data-filter="energetic" aria-pressed="false" style="--filter-color:#ffb348">energetic</button>
-<button class="filter" type="button" data-filter="pop" aria-pressed="false" style="--filter-color:#ff6f91">pop</button>
-<button class="filter" type="button" data-filter="jamaican" aria-pressed="false" style="--filter-color:#83dc62">jamaican</button>
-<button class="filter" type="button" data-filter="raps" aria-pressed="false" style="--filter-color:#eec84e">raps</button>
-<button class="filter" type="button" data-filter="edm" aria-pressed="false" style="--filter-color:#55a9ff">edm</button>
-<button class="filter" type="button" data-filter="dnb" aria-pressed="false" style="--filter-color:#9b8cff">dnb</button>
-<button class="filter" type="button" data-filter="weird" aria-pressed="false" style="--filter-color:#de74ee">weird</button>
-<button class="filter" type="button" data-filter="guitars and such" aria-pressed="false" style="--filter-color:#62d29a">guitars and such</button>
-<button class="filter" type="button" data-filter="psy" aria-pressed="false" style="--filter-color:#c6ee4e">psy</button>
-<button class="filter" type="button" data-filter="4-on-4" aria-pressed="false" style="--filter-color:#ff9b3e">4-on-4</button>
-<button class="filter" type="button" data-filter="hard" aria-pressed="false" style="--filter-color:#ff5752">hard</button>
-<button class="filter" type="button" data-filter="traditional" aria-pressed="false" style="--filter-color:#d2a06a">traditional</button></nav>
-      </div>
-    </section>
-    <div class="areas" id="playlist-areas"><section class="area" style="--area-color:#ffb348" data-area="energetic">
-  <div class="area-heading">
-    <h2 class="area-title">Energy Boost</h2>
-    <span class="area-count">4 playlists</span>
+    <section class="filter-panel" aria-label="Playlist filters">
+      <nav class="filters" aria-label="Filter playlists by category">
+  <div class="filter-row">
+    <div class="filter-group" aria-label="Show all playlists"><button class="filter" type="button" data-filter="all" data-color="#1ed760" aria-pressed="true" style="--filter-color:#1ed760">All</button></div>
+    <div class="filter-group" aria-label="Mood"><button class="filter" type="button" data-filter="energetic" data-color="#ffb348" aria-pressed="false" style="--filter-color:#ffb348">energetic</button>
+<button class="filter" type="button" data-filter="chill" data-color="#53dfd0" aria-pressed="false" style="--filter-color:#53dfd0">chill</button>
+<button class="filter" type="button" data-filter="hard" data-color="#ff5752" aria-pressed="false" style="--filter-color:#ff5752">hard</button>
+<button class="filter" type="button" data-filter="weird" data-color="#de74ee" aria-pressed="false" style="--filter-color:#de74ee">weird</button></div>
+    <div class="filter-group" aria-label="Styles"><button class="filter" type="button" data-filter="pop" data-color="#ff6f91" aria-pressed="false" style="--filter-color:#ff6f91">pop</button>
+<button class="filter" type="button" data-filter="raps" data-color="#eec84e" aria-pressed="false" style="--filter-color:#eec84e">raps</button>
+<button class="filter" type="button" data-filter="guitars and such" data-color="#62d29a" aria-pressed="false" style="--filter-color:#62d29a">guitars and such</button>
+<button class="filter" type="button" data-filter="jazzy" data-color="#b8dd84" aria-pressed="false" style="--filter-color:#b8dd84">jazzy</button>
+<button class="filter" type="button" data-filter="regional" data-color="#83dc62" aria-pressed="false" style="--filter-color:#83dc62">regional</button>
+<button class="filter" type="button" data-filter="traditional" data-color="#d2a06a" aria-pressed="false" style="--filter-color:#d2a06a">traditional</button></div>
   </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/1kyxlilOSFfczgREJptMDt" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--accent-two:#ffb348" aria-label="Open i'm the protagonist! on Spotify">
+  <div class="filter-row">
+    <div class="filter-group" aria-label="Electronic styles"><button class="filter" type="button" data-filter="edm" data-color="#55a9ff" aria-pressed="false" style="--filter-color:#55a9ff">edm</button>
+<button class="filter" type="button" data-filter="dnb" data-color="#9b8cff" aria-pressed="false" style="--filter-color:#9b8cff">dnb</button>
+<button class="filter" type="button" data-filter="breakbeat" data-color="#4ed4e8" aria-pressed="false" style="--filter-color:#4ed4e8">breakbeat</button>
+<button class="filter" type="button" data-filter="4-on-4" data-color="#ff9b3e" aria-pressed="false" style="--filter-color:#ff9b3e">4-on-4</button>
+<button class="filter" type="button" data-filter="psy" data-color="#c6ee4e" aria-pressed="false" style="--filter-color:#c6ee4e">psy</button></div>
+    <div class="filter-group" aria-label="Eras"><button class="filter" type="button" data-filter="70's" data-color="#e4a56c" aria-pressed="false" style="--filter-color:#e4a56c">70's</button>
+<button class="filter" type="button" data-filter="80's" data-color="#f482c8" aria-pressed="false" style="--filter-color:#f482c8">80's</button>
+<button class="filter" type="button" data-filter="90's" data-color="#ff8fab" aria-pressed="false" style="--filter-color:#ff8fab">90's</button>
+<button class="filter" type="button" data-filter="00's" data-color="#7db8ff" aria-pressed="false" style="--filter-color:#7db8ff">00's</button>
+<button class="filter" type="button" data-filter="modern" data-color="#a68bff" aria-pressed="false" style="--filter-color:#a68bff">modern</button></div>
+  </div>
+</nav>
+    </section>
+    <section class="playlist-zone" aria-label="Playlists">
+      <div class="grid-stage">
+
+        <div class="card-grid" id="playlist-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/1kyxlilOSFfczgREJptMDt" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--card-border:linear-gradient(135deg, #ffb348, #ffb348)" aria-label="Open i'm the protagonist! on Spotify" data-playlist-id="1kyxlilOSFfczgREJptMDt">
   <img class="cover" src="covers/01-im-the-protagonist.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i'm the protagonist!</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">i'm the protagonist!</h2></div>
+    <div class="card-meta" data-track-count="197"><span class="playtime">12h 44m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">energetic</span></div>
+    <div class="genres">Feel-good pop, uplifting rock, indie electronic, soundtrack</div>
     <p class="card-description">confidence boost. feelgood pop, positive edm, uplifting rock, fire it up and walk around thinking you're a superhero.</p>
-
-    <div class="card-bottom"><span class="genres">Feel-good pop, uplifting rock, indie electronic, soundtrack</span><span class="track-count">197 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/60wBOTMd5C4x56Ep7KHEfs" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--accent-two:#ffb348" aria-label="Open i just wanna bop my head on Spotify">
-  <img class="cover" src="covers/05-i-just-wanna-bop-my-head.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i just wanna bop my head</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">slow but heavy bangers with a solid beat to bop your head to. not quite dancy.</p>
-
-    <div class="card-bottom"><span class="genres">Neurohop, glitch-hop, experimental beats, instrumental hip-hop</span><span class="track-count">241 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/5u1MaLzY1fAVaePEfNcjMz" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--accent-two:#ffb348" aria-label="Open i am the dormant energy on Spotify">
-  <img class="cover" src="covers/06-i-am-the-dormant-energy.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i am the dormant energy</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">sinister &amp; powerful tracks on the electronic side representing low tempo but high pressure.</p>
-
-    <div class="card-bottom"><span class="genres">Dark electronica, industrial bass, power noise</span><span class="track-count">186 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/5tRjxgvJO1tjKVyQbxWUQd" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--accent-two:#ffb348" aria-label="Open keep the funk alive on Spotify">
-  <img class="cover" src="covers/07-keep-the-funk-alive.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">keep the funk alive</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">funk, electrofunk and i snuck in a few disco hits as well, please don't tell anyone.</p>
-
-    <div class="card-bottom"><span class="genres">Funk, electro-funk, disco</span><span class="track-count">200 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#53dfd0" data-area="chill">
-  <div class="area-heading">
-    <h2 class="area-title">Chill</h2>
-    <span class="area-count">10 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/4Oct49JohytBswUSSv70Ab" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open just vibin' on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/4Oct49JohytBswUSSv70Ab" target="_blank" rel="noopener noreferrer" data-categories="chill|jazzy" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0 0%, #b8dd84 100%)" aria-label="Open just vibin' on Spotify" data-playlist-id="4Oct49JohytBswUSSv70Ab">
   <img class="cover" src="covers/02-just-vibin.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">just vibin'</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">just vibin'</h2></div>
+    <div class="card-meta" data-track-count="219"><span class="playtime">12h 28m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill, jazzy</span></div>
+    <div class="genres">Chillhop, lo-fi hip-hop, wonky, modern funk</div>
     <p class="card-description">stuff to nod along and feel good to. chill-hop/lofi, wonky, modern funk.. Dilla-beat heavy at times.</p>
-
-    <div class="card-bottom"><span class="genres">Chillhop, lo-fi hip-hop, wonky, modern funk</span><span class="track-count">219 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6FoxMkvA1ujxw9KbyXUz6J" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open don't wanna move or do anything on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/6FoxMkvA1ujxw9KbyXUz6J" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0, #53dfd0)" aria-label="Open don't wanna move or do anything on Spotify" data-playlist-id="6FoxMkvA1ujxw9KbyXUz6J">
   <img class="cover" src="covers/03-dont-wanna-move-or-do-anything.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">don't wanna move or do anything</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">don't wanna move or do anything</h2></div>
+    <div class="card-meta" data-track-count="230"><span class="playtime">18h 44m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill</span></div>
+    <div class="genres">Downtempo, trip-hop, dub, ambient, chillout</div>
     <p class="card-description">chillout for just idlin' at home alone in your underwear and slackin off. downtempo, triphop, dub, anything low-energy.</p>
-
-    <div class="card-bottom"><span class="genres">Downtempo, trip-hop, dub, ambient, chillout</span><span class="track-count">230 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3KsiSTVg9KThp6sd9mDeWl" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open i'm very rich and i'm driving on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/3KsiSTVg9KThp6sd9mDeWl" target="_blank" rel="noopener noreferrer" data-categories="chill|jazzy" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0 0%, #b8dd84 100%)" aria-label="Open i'm very rich and i'm driving on Spotify" data-playlist-id="3KsiSTVg9KThp6sd9mDeWl">
   <img class="cover" src="covers/04-im-very-rich-and-im-driving.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i'm very rich and i'm driving</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">i'm very rich and i'm driving</h2></div>
+    <div class="card-meta" data-track-count="174"><span class="playtime">15h 35m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill, jazzy</span></div>
+    <div class="genres">Rare groove, nu jazz, liquid drum &amp; bass, acid jazz</div>
     <p class="card-description">rare groove / jazz &amp; bass / jazzy downtempo to drive around in your bentley in Tuscany on your way to Monaco, wearing a suit, all dignified, without a care in the world.</p>
-
-    <div class="card-bottom"><span class="genres">Rare groove, nu jazz, liquid drum &amp; bass, acid jazz</span><span class="track-count">174 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/7mUHdsqfaRazxQgX2y7AO9" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open make some love but soulfully on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/60wBOTMd5C4x56Ep7KHEfs" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--card-border:linear-gradient(135deg, #ffb348, #ffb348)" aria-label="Open i just wanna bop my head on Spotify" data-playlist-id="60wBOTMd5C4x56Ep7KHEfs">
+  <img class="cover" src="covers/05-i-just-wanna-bop-my-head.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">i just wanna bop my head</h2></div>
+    <div class="card-meta" data-track-count="241"><span class="playtime">16h 28m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">energetic</span></div>
+    <div class="genres">Neurohop, glitch-hop, experimental beats, instrumental hip-hop</div>
+    <p class="card-description">slow but heavy bangers with a solid beat to bop your head to. not quite dancy.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/5u1MaLzY1fAVaePEfNcjMz" target="_blank" rel="noopener noreferrer" data-categories="energetic" style="--accent:#ffb348;--card-border:linear-gradient(135deg, #ffb348, #ffb348)" aria-label="Open i am the dormant energy on Spotify" data-playlist-id="5u1MaLzY1fAVaePEfNcjMz">
+  <img class="cover" src="covers/06-i-am-the-dormant-energy.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">i am the dormant energy</h2></div>
+    <div class="card-meta" data-track-count="186"><span class="playtime">14h 2m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">energetic</span></div>
+    <div class="genres">Dark electronica, industrial bass, power noise</div>
+    <p class="card-description">sinister &amp; powerful tracks on the electronic side representing low tempo but high pressure.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/5tRjxgvJO1tjKVyQbxWUQd" target="_blank" rel="noopener noreferrer" data-categories="energetic|70's" style="--accent:#ffb348;--card-border:linear-gradient(135deg, #ffb348 0%, #e4a56c 100%)" aria-label="Open keep the funk alive on Spotify" data-playlist-id="5tRjxgvJO1tjKVyQbxWUQd">
+  <img class="cover" src="covers/07-keep-the-funk-alive.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">keep the funk alive</h2></div>
+    <div class="card-meta" data-track-count="200"><span class="playtime">15h 57m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">energetic, 70's</span></div>
+    <div class="genres">Funk, electro-funk, disco</div>
+    <p class="card-description">funk, electrofunk and i snuck in a few disco hits as well, please don't tell anyone.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/7mUHdsqfaRazxQgX2y7AO9" target="_blank" rel="noopener noreferrer" data-categories="chill|70's" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0 0%, #e4a56c 100%)" aria-label="Open make some love but soulfully on Spotify" data-playlist-id="7mUHdsqfaRazxQgX2y7AO9">
   <img class="cover" src="covers/08-make-some-love-but-soulfully.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">make some love but soulfully</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">make some love but soulfully</h2></div>
+    <div class="card-meta" data-track-count="95"><span class="playtime">6h 59m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill, 70's</span></div>
+    <div class="genres">Soul, quiet storm, R&amp;B</div>
     <p class="card-description">70's (and around) soul to make love to your old lady by.</p>
-
-    <div class="card-bottom"><span class="genres">Soul, quiet storm, R&amp;B</span><span class="track-count">95 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/17FGSFchxJEW6QOhOu9LVb" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open urban love on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/17FGSFchxJEW6QOhOu9LVb" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0, #53dfd0)" aria-label="Open urban love on Spotify" data-playlist-id="17FGSFchxJEW6QOhOu9LVb">
   <img class="cover" src="covers/09-urban-love.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">urban love</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">urban love</h2></div>
+    <div class="card-meta" data-track-count="94"><span class="playtime">6h 7m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill</span></div>
+    <div class="genres">Neo-soul, contemporary R&amp;B, future soul, alternative R&amp;B</div>
     <p class="card-description">modern r'n'b for lovers hiding away in a small purple-dim loft in an unforgiving metropolis.</p>
-
-    <div class="card-bottom"><span class="genres">Neo-soul, contemporary R&amp;B, future soul, alternative R&amp;B</span><span class="track-count">94 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3GRjXLchLpIHcmQLxVvsSF" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open 2006, London and you're stoned on Spotify">
-  <img class="cover" src="covers/32-2006-london-and-youre-stoned.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">2006, London and you're stoned</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">oldschool dubstep, from the time when it had something to do with 'dub' and 'step'. thanks, Britain!</p>
-
-    <div class="card-bottom"><span class="genres">Old-school dubstep, UK bass, riddim, 2-step garage</span><span class="track-count">178 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/5633KxHUhm3sOo3ypMUN2r" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open gaze into the lights and think on Spotify">
-  <img class="cover" src="covers/33-gaze-into-the-lights-and-think.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">gaze into the lights and think</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">chill and dreamy tunes accompanying an awake-meditative state where you just look at a city skyline or the stars and feel insignificant.</p>
-
-    <div class="card-bottom"><span class="genres">Dream pop, ambient electronica, downtempo, chillwave</span><span class="track-count">127 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/42CMqYTTLHygtnWuGt7DXy" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open crystals, facebook and menopause on Spotify">
-  <img class="cover" src="covers/36-crystals-facebook-and-menopause.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">crystals, facebook and menopause</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">ethereal, newage, mystical ballads for your mom.</p>
-
-    <div class="card-bottom"><span class="genres">New age, ethereal pop, worldbeat</span><span class="track-count">84 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3hLP1irV46EmC2xzNUrtKl" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--accent-two:#53dfd0" aria-label="Open audible melatonin on Spotify">
-  <img class="cover" src="covers/37-audible-melatonin.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">audible melatonin</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">ambient music for weirdos who prefer playing music in the background while sleeping.</p>
-
-    <div class="card-bottom"><span class="genres">Ambient, drone, sleep music</span><span class="track-count">116 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2mpmiaJjm7Oo8jkZJmojjT" target="_blank" rel="noopener noreferrer" data-categories="chill|psy" style="--accent:#53dfd0;--accent-two:#c6ee4e" aria-label="Open melt away into the universe on Spotify">
-  <img class="cover" src="covers/50-melt-away-into-the-universe.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">melt away into the universe</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">turn the UV lights on, start this psy-chill / psy-dub / psybient playlist and become one with your beanbag. you'll thank me later.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#53dfd0">chill</span><span class="category-tag" style="--tag-color:#c6ee4e">psy</span></div>
-    <div class="card-bottom"><span class="genres">Psychill, psydub, psybient, downtempo, ambient dub</span><span class="track-count">114 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#83dc62" data-area="jamaican">
-  <div class="area-heading">
-    <h2 class="area-title">Jamaican Roots</h2>
-    <span class="area-count">2 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/7zTR81d1eBe06P74yBHKce" target="_blank" rel="noopener noreferrer" data-categories="jamaican" style="--accent:#83dc62;--accent-two:#83dc62" aria-label="Open jah - not for the thick blooded on Spotify">
-  <img class="cover" src="covers/12-jah-not-for-the-thick-blooded.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">jah - not for the thick blooded</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">jamaican dancehall, focusing on early 00's and before.</p>
-
-    <div class="card-bottom"><span class="genres">Dancehall, ragga, early-2000s Jamaican pop</span><span class="track-count">68 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3wMsHkvU58t4Xc9m5PEuqz" target="_blank" rel="noopener noreferrer" data-categories="jamaican" style="--accent:#83dc62;--accent-two:#83dc62" aria-label="Open roots man on Spotify">
-  <img class="cover" src="covers/13-roots-man.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">roots man</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">reggae, first wave ska, classic dub. light it up!</p>
-
-    <div class="card-bottom"><span class="genres">Roots reggae, first-wave ska, classic dub, rocksteady</span><span class="track-count">106 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#eec84e" data-area="raps">
-  <div class="area-heading">
-    <h2 class="area-title">Raps</h2>
-    <span class="area-count">3 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/4zrhkXf1Dd455AmooU1qbU" target="_blank" rel="noopener noreferrer" data-categories="raps" style="--accent:#eec84e;--accent-two:#eec84e" aria-label="Open conscious culture on Spotify">
-  <img class="cover" src="covers/23-conscious-culture.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">conscious culture</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">they grabbed the mic and SPAT. true hiphop not for the dancefloors and none of that trendy 808/drill bs.</p>
-
-    <div class="card-bottom"><span class="genres">Conscious hip-hop, boom bap, underground rap, jazz rap</span><span class="track-count">190 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/238raPEvELUWNzm5tlMIZa" target="_blank" rel="noopener noreferrer" data-categories="raps" style="--accent:#eec84e;--accent-two:#eec84e" aria-label="Open raise the roof yo! on Spotify">
-  <img class="cover" src="covers/24-raise-the-roof-yo.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">raise the roof yo!</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">oldschool (80's-90's) hiphop with a party vibe. mc's, dj's, graffwriters &amp; bboys everywhere.</p>
-
-    <div class="card-bottom"><span class="genres">Old-school hip-hop, golden-age rap, party rap, turntablism, beatboxing</span><span class="track-count">174 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/1ggn47vpd6oKao11n0iBy6" target="_blank" rel="noopener noreferrer" data-categories="raps" style="--accent:#eec84e;--accent-two:#eec84e" aria-label="Open let them cook on Spotify">
-  <img class="cover" src="covers/25-let-them-cook.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">let them cook</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">modern hiphop / drill stuff and some uk grime for good measure. what the hell, let's add the weird raps here too.</p>
-
-    <div class="card-bottom"><span class="genres">Modern hip-hop, drill, UK grime, trap, experimental rap</span><span class="track-count">128 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#62d29a" data-area="guitars and such">
-  <div class="area-heading">
-    <h2 class="area-title">Guitars &amp; Such</h2>
-    <span class="area-count">10 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/10lKOQLqW2nvuRDGqv0Jhe" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open rock on, everybody! on Spotify">
-  <img class="cover" src="covers/38-rock-on-everybody.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">rock on, everybody!</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">rock/metal tunes with a pop kick, a.k.a stuff you hear at rock parties that fit everyone.</p>
-
-    <div class="card-bottom"><span class="genres">Pop rock, alternative rock, hard rock, pop-punk, grunge</span><span class="track-count">116 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3GKBzrIfTuqvyoIveV5GYD" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open i'd marry my harley on Spotify">
-  <img class="cover" src="covers/39-id-marry-my-harley.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i'd marry my harley</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">classic rock / heavy metal / some country and blues songs for gen x who just got a bike to fight midlife crisis</p>
-
-    <div class="card-bottom"><span class="genres">Classic rock, heavy metal, blues rock, hard rock, outlaw country</span><span class="track-count">166 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/5MohKQpxNMd1E814kTmk5W" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open got some spare change? on Spotify">
-  <img class="cover" src="covers/40-got-some-spare-change.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">got some spare change?</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">punk and its cousins, can't get any more angry and juvenile than this.</p>
-
-    <div class="card-bottom"><span class="genres">Punk rock, hardcore punk, post-punk, ska punk, garage rock</span><span class="track-count">75 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3j3Ktcrfik7grHPuPozzGR" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open dude that festival was bonkers on Spotify">
-  <img class="cover" src="covers/41-dude-that-festival-was-bonkers.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">dude that festival was bonkers</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">neo-alternative rock, space rock, ethno-techno-dub-rock.. things we all enjoyed at not-too-mainstram music festivals in the early aughts.</p>
-
-    <div class="card-bottom"><span class="genres">Alternative rock, space rock, psychedelic rock, world fusion, dub rock</span><span class="track-count">167 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/7iisAti3wZL2pzgi8Y5iC0" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open for hipster coffee shop owners on Spotify">
-  <img class="cover" src="covers/42-for-hipster-coffee-shop-owners.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">for hipster coffee shop owners</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">indie, progg, chillwave, ethno, your fossilized-in-2013 customers will love it, unironically.</p>
-
-    <div class="card-bottom"><span class="genres">Indie rock, indie pop, chillwave, neo-psychedelia, world fusion</span><span class="track-count">216 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/7EAsJbZ8d5XX0Ce0TlxjVu" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open wear flowers in your hair on Spotify">
-  <img class="cover" src="covers/43-wear-flowers-in-your-hair.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">wear flowers in your hair</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">hippy / traditionally alternative or progressive rock and proto-rock tunes, war sucks, 'far out man', yadda yadda..</p>
-
-    <div class="card-bottom"><span class="genres">Psychedelic rock, progressive rock, folk rock, proto-rock, classic rock</span><span class="track-count">160 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/4mIEQjz20lspnIpGoZTDZv" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open shakas &amp; wipeout on Spotify">
-  <img class="cover" src="covers/45-shakas-and-wipeout.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">shakas &amp; wipeout</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">surf rock and some fillers which are close to being surf rock. the vibe is there.</p>
-
-    <div class="card-bottom"><span class="genres">Surf rock, beach pop</span><span class="track-count">43 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/24NZz8a6IQXE61zEI6Bjpo" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open nerds with guitars on Spotify">
-  <img class="cover" src="covers/46-nerds-with-guitars.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">nerds with guitars</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">math-rock, progressive metal, it's a sport about who can waste away the most notes in 9 minutes.</p>
-
-    <div class="card-bottom"><span class="genres">Math rock, progressive metal, jazz fusion</span><span class="track-count">95 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/4QNEkBY4TRmt0hv1q3vC1s" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open wow i got nice shoes on Spotify">
-  <img class="cover" src="covers/47-wow-i-got-nice-shoes.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">wow i got nice shoes</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">post-rock / shoe-gaze / alternative metal because no one understands what you're going through.</p>
-
-    <div class="card-bottom"><span class="genres">Post-rock, shoegaze, alternative metal</span><span class="track-count">122 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2EFN600CUKkAza429Rt36T" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--accent-two:#62d29a" aria-label="Open mwuaaarrrrggh on Spotify">
-  <img class="cover" src="covers/48-mwuaaarrrrggh.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">mwuaaarrrrggh</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">metal in all of its glory.</p>
-
-    <div class="card-bottom"><span class="genres">Metal, death metal, nu metal, thrash metal, mathcore</span><span class="track-count">128 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#ff6f91" data-area="pop">
-  <div class="area-heading">
-    <h2 class="area-title">Pop Universe</h2>
-    <span class="area-count">10 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/0yKTixgNbC2bqfcsC2PH3p" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open i like everything that's on tv on Spotify">
-  <img class="cover" src="covers/14-i-like-everything-thats-on-tv.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i like everything that's on tv</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">post-2010 pop hits, nuff said.</p>
-
-    <div class="card-bottom"><span class="genres">2010s pop, 2020s pop, dance-pop, electropop, EDM</span><span class="track-count">205 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/56eZyb3xHV4s4bw6uWDMcY" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open your youtube intro on Spotify">
-  <img class="cover" src="covers/15-your-youtube-intro.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">your youtube intro</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">future bass &amp; kawaii bass, some deeper ones too.. modern melodic stuff to go with your logo for your lame gaming channel that will fail.</p>
-
-    <div class="card-bottom"><span class="genres">Future bass, kawaii bass, melodic EDM, chill trap</span><span class="track-count">131 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2RuJjgZIu2zUJ2H3XuGL8h" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open baseball caps &amp; divas on Spotify">
-  <img class="cover" src="covers/16-baseball-caps-and-divas.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">baseball caps &amp; divas</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">hiphop/rap tunes with a serious pop kick. you heard'em all before. hello early 2000's.</p>
-
-    <div class="card-bottom"><span class="genres">2000s hip-hop, pop rap, crunk, commercial rap</span><span class="track-count">101 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6ehlMl7aU3CrfUKs672oyi" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open msn, ipods and myspace on Spotify">
-  <img class="cover" src="covers/17-msn-ipods-and-myspace.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">msn, ipods and myspace</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">early-00's pop you downloaded from limewire and kept on your 256MB mp3 player.</p>
-
-    <div class="card-bottom"><span class="genres">2000s pop, dance-pop, pop rock, electro-pop, radio hits</span><span class="track-count">184 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/7rnvLvhF6xLNB5dN2FVpLF" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open fanny packs, n64s and ripped jeans on Spotify">
-  <img class="cover" src="covers/18-fanny-packs-n64s-and-ripped-jeans.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">fanny packs, n64s and ripped jeans</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">90's pop in a wide range, but pretty sure you know most of these tunes so enjoy.</p>
-
-    <div class="card-bottom"><span class="genres">1990s pop, alternative rock, hip-hop, dance</span><span class="track-count">170 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6DqYXwneiILgaqJQGTwo1k" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open sing into a hairbrush on Spotify">
-  <img class="cover" src="covers/19-sing-into-a-hairbrush.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">sing into a hairbrush</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">80's pop with extra cheeze. imagine your hairspray-stenched room consists of bright colors, rubik's cubes and pac-man posters.</p>
-
-    <div class="card-bottom"><span class="genres">1980s pop, synth-pop, new wave, dance-pop, soft rock, sophistipop</span><span class="track-count">189 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3CTJqnGM7XeIpU1yGq6Wf3" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open black nail polish on Spotify">
-  <img class="cover" src="covers/20-black-nail-polish.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">black nail polish</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">being oh-so-alternative in the late 80's. it's new wave and gloomy early synthpop.</p>
-
-    <div class="card-bottom"><span class="genres">New wave, synth-pop, post-punk, gothic rock, darkwave</span><span class="track-count">77 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3FLhhpv2rCQjubAne4cICS" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open seatbelt substitute on Spotify">
-  <img class="cover" src="covers/34-seatbelt-substitute.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">seatbelt substitute</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">sophisticated and easy tunes that are so safe, you don't need a seatbelt any more. (but seriously, please wear your seatbelt)</p>
-
-    <div class="card-bottom"><span class="genres">Sophistipop, yacht rock, jazz fusion, soft rock, easy listening</span><span class="track-count">161 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/0qqFsnnkTu8bZdJQivKZ15" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open breakups suck on Spotify">
-  <img class="cover" src="covers/35-breakups-suck.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">breakups suck</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">conventionally sad tearjerkers to go with your tub of ice cream and box of kleenex because you'll certainly die alone.</p>
-
-    <div class="card-bottom"><span class="genres">Pop ballads, soft rock, soul ballads, adult contemporary</span><span class="track-count">111 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/0zKQWIXUpXEowaLxNbzfRr" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--accent-two:#ff6f91" aria-label="Open hey kids! do you like music? on Spotify">
-  <img class="cover" src="covers/63-hey-kids-do-you-like-music.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">hey kids! do you like music?</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">kid-friendly songs, made for kids for the most part. this will keep 'em busy for about 2 minutes.</p>
-
-    <div class="card-bottom"><span class="genres">Children's music, family pop, novelty, easy listening</span><span class="track-count">82 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#55a9ff" data-area="edm">
-  <div class="area-heading">
-    <h2 class="area-title">Electronic</h2>
-    <span class="area-count">6 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/0B0RxGlB6AaSKKpjdHx2SW" target="_blank" rel="noopener noreferrer" data-categories="edm" style="--accent:#55a9ff;--accent-two:#55a9ff" aria-label="Open melt your face with BASS on Spotify">
-  <img class="cover" src="covers/26-melt-your-face-with-bass.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">melt your face with BASS</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">EDM to the max with focus on hard trap, brostep and complextro. your parents will hate it.</p>
-
-    <div class="card-bottom"><span class="genres">EDM, complextro, brostep, hard trap, bass music</span><span class="track-count">181 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6fR4rrB3LryKK2mhxJgNWL" target="_blank" rel="noopener noreferrer" data-categories="edm" style="--accent:#55a9ff;--accent-two:#55a9ff" aria-label="Open i hate to break it to ya.. on Spotify">
-  <img class="cover" src="covers/27-i-hate-to-break-it-to-ya.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i hate to break it to ya..</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">modern dancefloor-friendly breakbeat that focuses on moving your ass. post-2000 tunes mostly.</p>
-
-    <div class="card-bottom"><span class="genres">Breakbeat, newschool breaks, UK bass, garage</span><span class="track-count">186 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2J0FHIDzXyPoBlpge5mgxP" target="_blank" rel="noopener noreferrer" data-categories="edm" style="--accent:#55a9ff;--accent-two:#55a9ff" aria-label="Open did you like the matrix? on Spotify">
-  <img class="cover" src="covers/28-did-you-like-the-matrix.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">did you like the matrix?</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">late-90s breakbeat / big beat that match your frosted tips, black sunglasses and leather trench coat.</p>
-
-    <div class="card-bottom"><span class="genres">Big beat, breakbeat, electronica, rave, 1990s techno</span><span class="track-count">131 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6oDkxZp99u1niHlrhX0xW6" target="_blank" rel="noopener noreferrer" data-categories="edm|dnb" style="--accent:#55a9ff;--accent-two:#9b8cff" aria-label="Open welcome, alien overlords! on Spotify">
-  <img class="cover" src="covers/29-welcome-alien-overlords.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">welcome, alien overlords!</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">celebrate with modern melodic drum &amp; bass / neuro, plus a dash of trancy breaks and crossbreed.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#55a9ff">edm</span><span class="category-tag" style="--tag-color:#9b8cff">dnb</span></div>
-    <div class="card-bottom"><span class="genres">Neurofunk, melodic drum &amp; bass, trance &amp; bass, crossbreed</span><span class="track-count">156 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/42Bo5DVyFEbhuT4DU2jcbC" target="_blank" rel="noopener noreferrer" data-categories="edm|dnb" style="--accent:#55a9ff;--accent-two:#9b8cff" aria-label="Open bruh, are we the aliens? on Spotify">
-  <img class="cover" src="covers/30-bruh-are-we-the-aliens.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">bruh, are we the aliens?</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">dnb (jumpup, techstep, even some jungle) with actual kickdrums and snares! and amen breaks. because the list got some jungle too.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#55a9ff">edm</span><span class="category-tag" style="--tag-color:#9b8cff">dnb</span></div>
-    <div class="card-bottom"><span class="genres">Drum &amp; bass, jump-up, techstep, jungle</span><span class="track-count">179 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2POdxrYgDr9w47HCagkzep" target="_blank" rel="noopener noreferrer" data-categories="edm|chill" style="--accent:#55a9ff;--accent-two:#53dfd0" aria-label="Open let's cry naked on the subway on Spotify">
-  <img class="cover" src="covers/31-lets-cry-naked-on-the-subway.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">let's cry naked on the subway</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">deep uk garage &amp; some trip-hop, that sort of stuff. and several others too. keywords are: melancholic, deep, electronic, why.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#55a9ff">edm</span><span class="category-tag" style="--tag-color:#53dfd0">chill</span></div>
-    <div class="card-bottom"><span class="genres">Future garage, deep UK garage, trip-hop, melancholic electronica</span><span class="track-count">169 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#ff9b3e" data-area="4-on-4">
-  <div class="area-heading">
-    <h2 class="area-title">Four on the Floor</h2>
-    <span class="area-count">6 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/40rf3URQf0qL0UQV3UGyKH" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|psy" style="--accent:#ff9b3e;--accent-two:#c6ee4e" aria-label="Open ride the dragon, aummmmm on Spotify">
-  <img class="cover" src="covers/49-ride-the-dragon-aummmmm.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">ride the dragon, aummmmm</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">goa, psytrance &amp; adjacent genres. your mom told you not to drop acid but here you are..</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#ff9b3e">4-on-4</span><span class="category-tag" style="--tag-color:#c6ee4e">psy</span></div>
-    <div class="card-bottom"><span class="genres">Goa trance, psytrance, acid trance, progressive trance</span><span class="track-count">46 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6JO36zLoIilb1dfmmHWK0f" target="_blank" rel="noopener noreferrer" data-categories="4-on-4" style="--accent:#ff9b3e;--accent-two:#ff9b3e" aria-label="Open the house party is about to start on Spotify">
-  <img class="cover" src="covers/51-the-house-party-is-about-to-start.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">the house party is about to start</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">house (both old and new, all subgenres) and some electroswing. ideal party starters with margaritas before you take off to the rave.</p>
-
-    <div class="card-bottom"><span class="genres">House, funky house, progressive house, electro swing, disco house</span><span class="track-count">174 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/6HusMt7sljxFM1ooApl3Ik" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|hard" style="--accent:#ff9b3e;--accent-two:#ff5752" aria-label="Open oh my techno goodness on Spotify">
-  <img class="cover" src="covers/52-oh-my-techno-goodness.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">oh my techno goodness</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">non-soft techno bangers.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#ff9b3e">4-on-4</span><span class="category-tag" style="--tag-color:#ff5752">hard</span></div>
-    <div class="card-bottom"><span class="genres">Techno, hard techno, acid techno, industrial techno, schranz</span><span class="track-count">123 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/1OfIoXds6GvfGaJEhgdcwn" target="_blank" rel="noopener noreferrer" data-categories="4-on-4" style="--accent:#ff9b3e;--accent-two:#ff9b3e" aria-label="Open submerged in 4/4 on Spotify">
-  <img class="cover" src="covers/53-submerged-in-4-4.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">submerged in 4/4</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">deep dubtechno / techdub. i should've called the playlist 'dubmerged' but it's too late now.</p>
-
-    <div class="card-bottom"><span class="genres">Dub techno, deep techno, ambient techno, minimal techno</span><span class="track-count">81 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2yjdAx3dWTrOFmZ3FAa14V" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|chill" style="--accent:#ff9b3e;--accent-two:#53dfd0" aria-label="Open come down at the afterparty on Spotify">
-  <img class="cover" src="covers/54-come-down-at-the-afterparty.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">come down at the afterparty</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">minimal trance &amp; the like to shake off the night at 6AM wondering where your phone went</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#ff9b3e">4-on-4</span><span class="category-tag" style="--tag-color:#53dfd0">chill</span></div>
-    <div class="card-bottom"><span class="genres">Minimal trance, progressive house, melodic techno, deep house</span><span class="track-count">113 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/5YNa92sKgv2QmMt7BfqoXX" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|pop" style="--accent:#ff9b3e;--accent-two:#ff6f91" aria-label="Open ex &amp; estrogen on Spotify">
-  <img class="cover" src="covers/55-ex-and-estrogen.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">ex &amp; estrogen</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">.. or ex-strogen, if you will. dark times of electronic music, a.k.a eurodance &amp; some classic trance.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#ff9b3e">4-on-4</span><span class="category-tag" style="--tag-color:#ff6f91">pop</span></div>
-    <div class="card-bottom"><span class="genres">Eurodance, classic trance, happy hardcore, 1990s dance</span><span class="track-count">132 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#ff5752" data-area="hard">
-  <div class="area-heading">
-    <h2 class="area-title">Hard &amp; Heavy</h2>
-    <span class="area-count">4 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/77hf9NYhZYzDBiF1ZTSTP3" target="_blank" rel="noopener noreferrer" data-categories="hard" style="--accent:#ff5752;--accent-two:#ff5752" aria-label="Open sadomazo dungeon on Spotify">
-  <img class="cover" src="covers/21-sadomazo-dungeon.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">sadomazo dungeon</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">ebm, industrial, darkwave, you're like a vampire wearing latex in Sodom and Gomorrah, act like it.</p>
-
-    <div class="card-bottom"><span class="genres">Industrial, EBM, darkwave, gothic electronic, industrial rock</span><span class="track-count">80 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2wzyZFr6chtWp0AG65gkYi" target="_blank" rel="noopener noreferrer" data-categories="hard|weird" style="--accent:#ff5752;--accent-two:#de74ee" aria-label="Open glitter, distortion and autotune on Spotify">
-  <img class="cover" src="covers/22-glitter-distortion-and-autotune.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">glitter, distortion and autotune</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">we get it. you're from the future. hyperpop, deconstructed club, i swear it's AI before AI was even a thing.</p>
-    <div class="crossovers" aria-label="Overlapping areas"><span class="category-tag" style="--tag-color:#ff5752">hard</span><span class="category-tag" style="--tag-color:#de74ee">weird</span></div>
-    <div class="card-bottom"><span class="genres">Hyperpop, deconstructed club, experimental electronic</span><span class="track-count">119 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/45Xtl9MNlASRuK6XrWRB28" target="_blank" rel="noopener noreferrer" data-categories="hard" style="--accent:#ff5752;--accent-two:#ff5752" aria-label="Open bald head &amp; hakkuh on Spotify">
-  <img class="cover" src="covers/56-bald-head-and-hakkuh.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">bald head &amp; hakkuh</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">gabber / hardcore techno as the dutch intended. you know, all that thunderdome/terrordrome stuff.</p>
-
-    <div class="card-bottom"><span class="genres">Gabber, hardcore techno, industrial hardcore, early rave</span><span class="track-count">78 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/7I18IIw8SHBpJEVfgZeX9w" target="_blank" rel="noopener noreferrer" data-categories="hard" style="--accent:#ff5752;--accent-two:#ff5752" aria-label="Open good morning, neighbors! on Spotify">
-  <img class="cover" src="covers/57-good-morning-neighbors.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">good morning, neighbors!</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">noise / breakcore / cybergrind / too much. i added the most uncalled-for tunes here, so if you like torture...</p>
-
-    <div class="card-bottom"><span class="genres">Breakcore, digital hardcore, cybergrind, noise, extreme metal</span><span class="track-count">84 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#d2a06a" data-area="traditional">
-  <div class="area-heading">
-    <h2 class="area-title">Traditions</h2>
-    <span class="area-count">4 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/5pdJmhzMJOM3EX2xXKhryy" target="_blank" rel="noopener noreferrer" data-categories="traditional" style="--accent:#d2a06a;--accent-two:#d2a06a" aria-label="Open help my grandma took over spotify on Spotify">
-  <img class="cover" src="covers/44-help-my-grandma-took-over-spotify.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">help my grandma took over spotify</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">oldies your elderly will appreciate and bake you a delicious pie because you're a nice grandchild.</p>
-
-    <div class="card-bottom"><span class="genres">Oldies, traditional pop, early rock &amp; roll</span><span class="track-count">83 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/44aTbY8kxRTNuUbkXdO7Ir" target="_blank" rel="noopener noreferrer" data-categories="traditional" style="--accent:#d2a06a;--accent-two:#d2a06a" aria-label="Open honor thy folk heritage on Spotify">
-  <img class="cover" src="covers/60-honor-thy-folk-heritage.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">honor thy folk heritage</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">from tibetan chanting to balkan turbofolk through New York klezmer and avantgarde folk-adjacent artistry. country of origin: yes.</p>
-
-    <div class="card-bottom"><span class="genres">Folk, turbofolk, klezmer, traditional, folk fusion</span><span class="track-count">95 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/60yuvhVseVbJcHuBGRo90d" target="_blank" rel="noopener noreferrer" data-categories="traditional" style="--accent:#d2a06a;--accent-two:#d2a06a" aria-label="Open saxophone a z z on Spotify">
-  <img class="cover" src="covers/61-saxophone-a-z-z.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">saxophone a z z</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">that's right, it's the jazz cats! from old timey mellow ballads to fusion madness.</p>
-
-    <div class="card-bottom"><span class="genres">Jazz, bebop, hard bop, cool jazz, fusion, vocal jazz</span><span class="track-count">178 tracks</span></div>
-  </div>
-</a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/1UioBuw0YyHHdJ9GdM3lf9" target="_blank" rel="noopener noreferrer" data-categories="traditional" style="--accent:#d2a06a;--accent-two:#d2a06a" aria-label="Open dead guys in wigs on Spotify">
-  <img class="cover" src="covers/62-dead-guys-in-wigs.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
-  <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">dead guys in wigs</h3><span class="open-mark" aria-hidden="true">↗</span></div>
-    <p class="card-description">classical music.</p>
-
-    <div class="card-bottom"><span class="genres">Classical, romantic, baroque, orchestral, soundtrack</span><span class="track-count">85 tracks</span></div>
-  </div>
-</a></div>
-</section>
-<section class="area" style="--area-color:#de74ee" data-area="weird">
-  <div class="area-heading">
-    <h2 class="area-title">Beautifully Weird</h2>
-    <span class="area-count">5 playlists</span>
-  </div>
-  <div class="card-grid"><a class="playlist-card" href="https://open.spotify.com/playlist/0cmFdggG5YG85GRmq9Y8HT" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--accent-two:#de74ee" aria-label="Open make heatwaves enjoyable on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/0cmFdggG5YG85GRmq9Y8HT" target="_blank" rel="noopener noreferrer" data-categories="regional|weird" style="--accent:#83dc62;--card-border:linear-gradient(135deg, #83dc62 0%, #de74ee 100%)" aria-label="Open make heatwaves enjoyable on Spotify" data-playlist-id="0cmFdggG5YG85GRmq9Y8HT">
   <img class="cover" src="covers/10-make-heatwaves-enjoyable.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">make heatwaves enjoyable</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">make heatwaves enjoyable</h2></div>
+    <div class="card-meta" data-track-count="124"><span class="playtime">8h 30m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">regional, weird</span></div>
+    <div class="genres">Kuduro, dembow, moombahton, reggaeton, global bass, footwork</div>
     <p class="card-description">hello africa &amp; latin america! all that modern dembow, kuduro, moombahton, reggaeton, footwork, goes quite hard ngl.</p>
-
-    <div class="card-bottom"><span class="genres">Kuduro, dembow, moombahton, reggaeton, global bass, footwork</span><span class="track-count">124 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/1CA4OmirpMt7ubKHaxcz89" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--accent-two:#de74ee" aria-label="Open durban rooftop party on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/1CA4OmirpMt7ubKHaxcz89" target="_blank" rel="noopener noreferrer" data-categories="regional|chill" style="--accent:#83dc62;--card-border:linear-gradient(135deg, #83dc62 0%, #53dfd0 100%)" aria-label="Open durban rooftop party on Spotify" data-playlist-id="1CA4OmirpMt7ubKHaxcz89">
   <img class="cover" src="covers/11-durban-rooftop-party.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">durban rooftop party</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">durban rooftop party</h2></div>
+    <div class="card-meta" data-track-count="67"><span class="playtime">6h 41m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">regional, chill</span></div>
+    <div class="genres">Amapiano, gqom, afro house</div>
     <p class="card-description">good modern stuff from ZA, namely amapiano and a pinch of gqom for good measure.</p>
-
-    <div class="card-bottom"><span class="genres">Amapiano, gqom, afro house</span><span class="track-count">67 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/2MSGfefqtiOYDoy2QC8rmB" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--accent-two:#de74ee" aria-label="Open gameboys &amp; synthesizers on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/7zTR81d1eBe06P74yBHKce" target="_blank" rel="noopener noreferrer" data-categories="regional" style="--accent:#83dc62;--card-border:linear-gradient(135deg, #83dc62, #83dc62)" aria-label="Open jah - not for the thick blooded on Spotify" data-playlist-id="7zTR81d1eBe06P74yBHKce">
+  <img class="cover" src="covers/12-jah-not-for-the-thick-blooded.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">jah - not for the thick blooded</h2></div>
+    <div class="card-meta" data-track-count="68"><span class="playtime">4h 5m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">regional</span></div>
+    <div class="genres">Dancehall, ragga, early-2000s Jamaican pop</div>
+    <p class="card-description">jamaican dancehall, focusing on early 00's and before.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3wMsHkvU58t4Xc9m5PEuqz" target="_blank" rel="noopener noreferrer" data-categories="regional|chill" style="--accent:#83dc62;--card-border:linear-gradient(135deg, #83dc62 0%, #53dfd0 100%)" aria-label="Open roots man on Spotify" data-playlist-id="3wMsHkvU58t4Xc9m5PEuqz">
+  <img class="cover" src="covers/13-roots-man.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">roots man</h2></div>
+    <div class="card-meta" data-track-count="106"><span class="playtime">6h 56m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">regional, chill</span></div>
+    <div class="genres">Roots reggae, first-wave ska, classic dub, rocksteady</div>
+    <p class="card-description">reggae, first wave ska, classic dub. light it up!</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/0yKTixgNbC2bqfcsC2PH3p" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91, #ff6f91)" aria-label="Open i like everything that's on tv on Spotify" data-playlist-id="0yKTixgNbC2bqfcsC2PH3p">
+  <img class="cover" src="covers/14-i-like-everything-thats-on-tv.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">i like everything that's on tv</h2></div>
+    <div class="card-meta" data-track-count="205"><span class="playtime">11h 34m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop</span></div>
+    <div class="genres">2010s pop, 2020s pop, dance-pop, electropop, EDM</div>
+    <p class="card-description">post-2010 pop hits, nuff said.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/56eZyb3xHV4s4bw6uWDMcY" target="_blank" rel="noopener noreferrer" data-categories="pop|modern" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #a68bff 100%)" aria-label="Open your youtube intro on Spotify" data-playlist-id="56eZyb3xHV4s4bw6uWDMcY">
+  <img class="cover" src="covers/15-your-youtube-intro.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">your youtube intro</h2></div>
+    <div class="card-meta" data-track-count="131"><span class="playtime">7h 32m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, modern</span></div>
+    <div class="genres">Future bass, kawaii bass, melodic EDM, chill trap</div>
+    <p class="card-description">future bass &amp; kawaii bass, some deeper ones too.. modern melodic stuff to go with your logo for your lame gaming channel that will fail.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2RuJjgZIu2zUJ2H3XuGL8h" target="_blank" rel="noopener noreferrer" data-categories="pop|raps" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #eec84e 100%)" aria-label="Open baseball caps &amp; divas on Spotify" data-playlist-id="2RuJjgZIu2zUJ2H3XuGL8h">
+  <img class="cover" src="covers/16-baseball-caps-and-divas.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">baseball caps &amp; divas</h2></div>
+    <div class="card-meta" data-track-count="101"><span class="playtime">6h 59m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, raps</span></div>
+    <div class="genres">2000s hip-hop, pop rap, crunk, commercial rap</div>
+    <p class="card-description">hiphop/rap tunes with a serious pop kick. you heard'em all before. hello early 2000's.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/6ehlMl7aU3CrfUKs672oyi" target="_blank" rel="noopener noreferrer" data-categories="pop|00's" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #7db8ff 100%)" aria-label="Open msn, ipods and myspace on Spotify" data-playlist-id="6ehlMl7aU3CrfUKs672oyi">
+  <img class="cover" src="covers/17-msn-ipods-and-myspace.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">msn, ipods and myspace</h2></div>
+    <div class="card-meta" data-track-count="184"><span class="playtime">11h 38m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, 00's</span></div>
+    <div class="genres">2000s pop, dance-pop, pop rock, electro-pop, radio hits</div>
+    <p class="card-description">early-00's pop you downloaded from limewire and kept on your 256MB mp3 player.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/7rnvLvhF6xLNB5dN2FVpLF" target="_blank" rel="noopener noreferrer" data-categories="pop|90's" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #ff8fab 100%)" aria-label="Open fanny packs, n64s and ripped jeans on Spotify" data-playlist-id="7rnvLvhF6xLNB5dN2FVpLF">
+  <img class="cover" src="covers/18-fanny-packs-n64s-and-ripped-jeans.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">fanny packs, n64s and ripped jeans</h2></div>
+    <div class="card-meta" data-track-count="170"><span class="playtime">11h 57m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, 90's</span></div>
+    <div class="genres">1990s pop, alternative rock, hip-hop, dance</div>
+    <p class="card-description">90's pop in a wide range, but pretty sure you know most of these tunes so enjoy.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/6DqYXwneiILgaqJQGTwo1k" target="_blank" rel="noopener noreferrer" data-categories="pop|80's" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #f482c8 100%)" aria-label="Open sing into a hairbrush on Spotify" data-playlist-id="6DqYXwneiILgaqJQGTwo1k">
+  <img class="cover" src="covers/19-sing-into-a-hairbrush.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">sing into a hairbrush</h2></div>
+    <div class="card-meta" data-track-count="189"><span class="playtime">13h 9m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, 80's</span></div>
+    <div class="genres">1980s pop, synth-pop, new wave, dance-pop, soft rock, sophistipop</div>
+    <p class="card-description">80's pop with extra cheeze. imagine your hairspray-stenched room consists of bright colors, rubik's cubes and pac-man posters.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3CTJqnGM7XeIpU1yGq6Wf3" target="_blank" rel="noopener noreferrer" data-categories="pop|80's" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #f482c8 100%)" aria-label="Open black nail polish on Spotify" data-playlist-id="3CTJqnGM7XeIpU1yGq6Wf3">
+  <img class="cover" src="covers/20-black-nail-polish.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">black nail polish</h2></div>
+    <div class="card-meta" data-track-count="77"><span class="playtime">5h 21m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, 80's</span></div>
+    <div class="genres">New wave, synth-pop, post-punk, gothic rock, darkwave</div>
+    <p class="card-description">being oh-so-alternative in the late 80's. it's new wave and gloomy early synthpop.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/77hf9NYhZYzDBiF1ZTSTP3" target="_blank" rel="noopener noreferrer" data-categories="hard" style="--accent:#ff5752;--card-border:linear-gradient(135deg, #ff5752, #ff5752)" aria-label="Open sadomazo dungeon on Spotify" data-playlist-id="77hf9NYhZYzDBiF1ZTSTP3">
+  <img class="cover" src="covers/21-sadomazo-dungeon.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">sadomazo dungeon</h2></div>
+    <div class="card-meta" data-track-count="80"><span class="playtime">6h 14m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">hard</span></div>
+    <div class="genres">Industrial, EBM, darkwave, gothic electronic, industrial rock</div>
+    <p class="card-description">ebm, industrial, darkwave, you're like a vampire wearing latex in Sodom and Gomorrah, act like it.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2wzyZFr6chtWp0AG65gkYi" target="_blank" rel="noopener noreferrer" data-categories="hard|weird|modern" style="--accent:#ff5752;--card-border:linear-gradient(135deg, #ff5752 0%, #de74ee 50%, #a68bff 100%)" aria-label="Open glitter, distortion and autotune on Spotify" data-playlist-id="2wzyZFr6chtWp0AG65gkYi">
+  <img class="cover" src="covers/22-glitter-distortion-and-autotune.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">glitter, distortion and autotune</h2></div>
+    <div class="card-meta" data-track-count="119"><span class="playtime">6h 18m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">hard, weird, modern</span></div>
+    <div class="genres">Hyperpop, deconstructed club, experimental electronic</div>
+    <p class="card-description">we get it. you're from the future. hyperpop, deconstructed club, i swear it's AI before AI was even a thing.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/4zrhkXf1Dd455AmooU1qbU" target="_blank" rel="noopener noreferrer" data-categories="raps" style="--accent:#eec84e;--card-border:linear-gradient(135deg, #eec84e, #eec84e)" aria-label="Open conscious culture on Spotify" data-playlist-id="4zrhkXf1Dd455AmooU1qbU">
+  <img class="cover" src="covers/23-conscious-culture.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">conscious culture</h2></div>
+    <div class="card-meta" data-track-count="190"><span class="playtime">12h 21m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">raps</span></div>
+    <div class="genres">Conscious hip-hop, boom bap, underground rap, jazz rap</div>
+    <p class="card-description">they grabbed the mic and SPAT. true hiphop not for the dancefloors and none of that trendy 808/drill bs.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/238raPEvELUWNzm5tlMIZa" target="_blank" rel="noopener noreferrer" data-categories="raps" style="--accent:#eec84e;--card-border:linear-gradient(135deg, #eec84e, #eec84e)" aria-label="Open raise the roof yo! on Spotify" data-playlist-id="238raPEvELUWNzm5tlMIZa">
+  <img class="cover" src="covers/24-raise-the-roof-yo.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">raise the roof yo!</h2></div>
+    <div class="card-meta" data-track-count="174"><span class="playtime">11h 49m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">raps</span></div>
+    <div class="genres">Old-school hip-hop, golden-age rap, party rap, turntablism, beatboxing</div>
+    <p class="card-description">oldschool (80's-90's) hiphop with a party vibe. mc's, dj's, graffwriters &amp; bboys everywhere.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/1ggn47vpd6oKao11n0iBy6" target="_blank" rel="noopener noreferrer" data-categories="raps|modern" style="--accent:#eec84e;--card-border:linear-gradient(135deg, #eec84e 0%, #a68bff 100%)" aria-label="Open let them cook on Spotify" data-playlist-id="1ggn47vpd6oKao11n0iBy6">
+  <img class="cover" src="covers/25-let-them-cook.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">let them cook</h2></div>
+    <div class="card-meta" data-track-count="128"><span class="playtime">7h 24m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">raps, modern</span></div>
+    <div class="genres">Modern hip-hop, drill, UK grime, trap, experimental rap</div>
+    <p class="card-description">modern hiphop / drill stuff and some uk grime for good measure. what the hell, let's add the weird raps here too.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/0B0RxGlB6AaSKKpjdHx2SW" target="_blank" rel="noopener noreferrer" data-categories="edm|hard" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #ff5752 100%)" aria-label="Open melt your face with BASS on Spotify" data-playlist-id="0B0RxGlB6AaSKKpjdHx2SW">
+  <img class="cover" src="covers/26-melt-your-face-with-bass.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">melt your face with BASS</h2></div>
+    <div class="card-meta" data-track-count="182"><span class="playtime">11h 26m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, hard</span></div>
+    <div class="genres">EDM, complextro, brostep, hard trap, bass music</div>
+    <p class="card-description">EDM to the max with focus on hard trap, brostep and complextro. your parents will hate it.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/6fR4rrB3LryKK2mhxJgNWL" target="_blank" rel="noopener noreferrer" data-categories="edm|breakbeat" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #4ed4e8 100%)" aria-label="Open i hate to break it to ya.. on Spotify" data-playlist-id="6fR4rrB3LryKK2mhxJgNWL">
+  <img class="cover" src="covers/27-i-hate-to-break-it-to-ya.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">i hate to break it to ya..</h2></div>
+    <div class="card-meta" data-track-count="186"><span class="playtime">15h 55m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, breakbeat</span></div>
+    <div class="genres">Breakbeat, newschool breaks, UK bass, garage</div>
+    <p class="card-description">modern dancefloor-friendly breakbeat that focuses on moving your ass. post-2000 tunes mostly.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2J0FHIDzXyPoBlpge5mgxP" target="_blank" rel="noopener noreferrer" data-categories="edm|breakbeat" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #4ed4e8 100%)" aria-label="Open did you like the matrix? on Spotify" data-playlist-id="2J0FHIDzXyPoBlpge5mgxP">
+  <img class="cover" src="covers/28-did-you-like-the-matrix.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">did you like the matrix?</h2></div>
+    <div class="card-meta" data-track-count="131"><span class="playtime">11h 48m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, breakbeat</span></div>
+    <div class="genres">Big beat, breakbeat, electronica, rave, 1990s techno</div>
+    <p class="card-description">late-90s breakbeat / big beat that match your frosted tips, black sunglasses and leather trench coat.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/6oDkxZp99u1niHlrhX0xW6" target="_blank" rel="noopener noreferrer" data-categories="edm|dnb|breakbeat" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #9b8cff 50%, #4ed4e8 100%)" aria-label="Open welcome, alien overlords! on Spotify" data-playlist-id="6oDkxZp99u1niHlrhX0xW6">
+  <img class="cover" src="covers/29-welcome-alien-overlords.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">welcome, alien overlords!</h2></div>
+    <div class="card-meta" data-track-count="156"><span class="playtime">12h 29m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, dnb, breakbeat</span></div>
+    <div class="genres">Neurofunk, melodic drum &amp; bass, trance &amp; bass, crossbreed</div>
+    <p class="card-description">celebrate with modern melodic drum &amp; bass / neuro, plus a dash of trancy breaks and crossbreed.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/42Bo5DVyFEbhuT4DU2jcbC" target="_blank" rel="noopener noreferrer" data-categories="edm|dnb|breakbeat" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #9b8cff 50%, #4ed4e8 100%)" aria-label="Open bruh, are we the aliens? on Spotify" data-playlist-id="42Bo5DVyFEbhuT4DU2jcbC">
+  <img class="cover" src="covers/30-bruh-are-we-the-aliens.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">bruh, are we the aliens?</h2></div>
+    <div class="card-meta" data-track-count="179"><span class="playtime">17h 7m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, dnb, breakbeat</span></div>
+    <div class="genres">Drum &amp; bass, jump-up, techstep, jungle</div>
+    <p class="card-description">dnb (jumpup, techstep, even some jungle) with actual kickdrums and snares! and amen breaks. because the list got some jungle too.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2POdxrYgDr9w47HCagkzep" target="_blank" rel="noopener noreferrer" data-categories="edm|chill" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #53dfd0 100%)" aria-label="Open let's cry naked on the subway on Spotify" data-playlist-id="2POdxrYgDr9w47HCagkzep">
+  <img class="cover" src="covers/31-lets-cry-naked-on-the-subway.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">let's cry naked on the subway</h2></div>
+    <div class="card-meta" data-track-count="169"><span class="playtime">13h 43m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, chill</span></div>
+    <div class="genres">Future garage, deep UK garage, trip-hop, melancholic electronica</div>
+    <p class="card-description">deep uk garage &amp; some trip-hop, that sort of stuff. and several others too. keywords are: melancholic, deep, electronic, why.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3GRjXLchLpIHcmQLxVvsSF" target="_blank" rel="noopener noreferrer" data-categories="edm|chill" style="--accent:#55a9ff;--card-border:linear-gradient(135deg, #55a9ff 0%, #53dfd0 100%)" aria-label="Open 2006, London and you're stoned on Spotify" data-playlist-id="3GRjXLchLpIHcmQLxVvsSF">
+  <img class="cover" src="covers/32-2006-london-and-youre-stoned.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">2006, London and you're stoned</h2></div>
+    <div class="card-meta" data-track-count="178"><span class="playtime">14h 2m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">edm, chill</span></div>
+    <div class="genres">Old-school dubstep, UK bass, riddim, 2-step garage</div>
+    <p class="card-description">oldschool dubstep, from the time when it had something to do with 'dub' and 'step'. thanks, Britain!</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/5633KxHUhm3sOo3ypMUN2r" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0, #53dfd0)" aria-label="Open gaze into the lights and think on Spotify" data-playlist-id="5633KxHUhm3sOo3ypMUN2r">
+  <img class="cover" src="covers/33-gaze-into-the-lights-and-think.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">gaze into the lights and think</h2></div>
+    <div class="card-meta" data-track-count="127"><span class="playtime">9h 26m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill</span></div>
+    <div class="genres">Dream pop, ambient electronica, downtempo, chillwave</div>
+    <p class="card-description">chill and dreamy tunes accompanying an awake-meditative state where you just look at a city skyline or the stars and feel insignificant.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3FLhhpv2rCQjubAne4cICS" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91, #ff6f91)" aria-label="Open seatbelt substitute on Spotify" data-playlist-id="3FLhhpv2rCQjubAne4cICS">
+  <img class="cover" src="covers/34-seatbelt-substitute.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">seatbelt substitute</h2></div>
+    <div class="card-meta" data-track-count="161"><span class="playtime">10h 46m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop</span></div>
+    <div class="genres">Sophistipop, yacht rock, jazz fusion, soft rock, easy listening</div>
+    <p class="card-description">sophisticated and easy tunes that are so safe, you don't need a seatbelt any more. (but seriously, please wear your seatbelt)</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/0qqFsnnkTu8bZdJQivKZ15" target="_blank" rel="noopener noreferrer" data-categories="pop|chill" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91 0%, #53dfd0 100%)" aria-label="Open breakups suck on Spotify" data-playlist-id="0qqFsnnkTu8bZdJQivKZ15">
+  <img class="cover" src="covers/35-breakups-suck.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">breakups suck</h2></div>
+    <div class="card-meta" data-track-count="111"><span class="playtime">8h 17m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop, chill</span></div>
+    <div class="genres">Pop ballads, soft rock, soul ballads, adult contemporary</div>
+    <p class="card-description">conventionally sad tearjerkers to go with your tub of ice cream and box of kleenex because you'll certainly die alone.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/42CMqYTTLHygtnWuGt7DXy" target="_blank" rel="noopener noreferrer" data-categories="chill|pop" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0 0%, #ff6f91 100%)" aria-label="Open crystals, facebook and menopause on Spotify" data-playlist-id="42CMqYTTLHygtnWuGt7DXy">
+  <img class="cover" src="covers/36-crystals-facebook-and-menopause.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">crystals, facebook and menopause</h2></div>
+    <div class="card-meta" data-track-count="84"><span class="playtime">6h 5m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill, pop</span></div>
+    <div class="genres">New age, ethereal pop, worldbeat</div>
+    <p class="card-description">ethereal, newage, mystical ballads for your mom.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3hLP1irV46EmC2xzNUrtKl" target="_blank" rel="noopener noreferrer" data-categories="chill" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0, #53dfd0)" aria-label="Open audible melatonin on Spotify" data-playlist-id="3hLP1irV46EmC2xzNUrtKl">
+  <img class="cover" src="covers/37-audible-melatonin.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">audible melatonin</h2></div>
+    <div class="card-meta" data-track-count="116"><span class="playtime">7h 50m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill</span></div>
+    <div class="genres">Ambient, drone, sleep music</div>
+    <p class="card-description">ambient music for weirdos who prefer playing music in the background while sleeping.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/10lKOQLqW2nvuRDGqv0Jhe" target="_blank" rel="noopener noreferrer" data-categories="guitars and such|pop" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a 0%, #ff6f91 100%)" aria-label="Open rock on, everybody! on Spotify" data-playlist-id="10lKOQLqW2nvuRDGqv0Jhe">
+  <img class="cover" src="covers/38-rock-on-everybody.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">rock on, everybody!</h2></div>
+    <div class="card-meta" data-track-count="116"><span class="playtime">7h 28m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such, pop</span></div>
+    <div class="genres">Pop rock, alternative rock, hard rock, pop-punk, grunge</div>
+    <p class="card-description">rock/metal tunes with a pop kick, a.k.a stuff you hear at rock parties that fit everyone.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3GKBzrIfTuqvyoIveV5GYD" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open i'd marry my harley on Spotify" data-playlist-id="3GKBzrIfTuqvyoIveV5GYD">
+  <img class="cover" src="covers/39-id-marry-my-harley.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">i'd marry my harley</h2></div>
+    <div class="card-meta" data-track-count="166"><span class="playtime">12h 7m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Classic rock, heavy metal, blues rock, hard rock, outlaw country</div>
+    <p class="card-description">classic rock / heavy metal / some country and blues songs for gen x who just got a bike to fight midlife crisis</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/5MohKQpxNMd1E814kTmk5W" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open got some spare change? on Spotify" data-playlist-id="5MohKQpxNMd1E814kTmk5W">
+  <img class="cover" src="covers/40-got-some-spare-change.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">got some spare change?</h2></div>
+    <div class="card-meta" data-track-count="75"><span class="playtime">3h 33m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Punk rock, hardcore punk, post-punk, ska punk, garage rock</div>
+    <p class="card-description">punk and its cousins, can't get any more angry and juvenile than this.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3j3Ktcrfik7grHPuPozzGR" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open dude that festival was bonkers on Spotify" data-playlist-id="3j3Ktcrfik7grHPuPozzGR">
+  <img class="cover" src="covers/41-dude-that-festival-was-bonkers.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">dude that festival was bonkers</h2></div>
+    <div class="card-meta" data-track-count="167"><span class="playtime">16h 27m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Alternative rock, space rock, psychedelic rock, world fusion, dub rock</div>
+    <p class="card-description">neo-alternative rock, space rock, ethno-techno-dub-rock.. things we all enjoyed at not-too-mainstram music festivals in the early aughts.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/7iisAti3wZL2pzgi8Y5iC0" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open for hipster coffee shop owners on Spotify" data-playlist-id="7iisAti3wZL2pzgi8Y5iC0">
+  <img class="cover" src="covers/42-for-hipster-coffee-shop-owners.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">for hipster coffee shop owners</h2></div>
+    <div class="card-meta" data-track-count="216"><span class="playtime">14h 33m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Indie rock, indie pop, chillwave, neo-psychedelia, world fusion</div>
+    <p class="card-description">indie, progg, chillwave, ethno, your fossilized-in-2013 customers will love it, unironically.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/7EAsJbZ8d5XX0Ce0TlxjVu" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open wear flowers in your hair on Spotify" data-playlist-id="7EAsJbZ8d5XX0Ce0TlxjVu">
+  <img class="cover" src="covers/43-wear-flowers-in-your-hair.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">wear flowers in your hair</h2></div>
+    <div class="card-meta" data-track-count="160"><span class="playtime">11h 55m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Psychedelic rock, progressive rock, folk rock, proto-rock, classic rock</div>
+    <p class="card-description">hippy / traditionally alternative or progressive rock and proto-rock tunes, war sucks, 'far out man', yadda yadda..</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/5pdJmhzMJOM3EX2xXKhryy" target="_blank" rel="noopener noreferrer" data-categories="traditional|guitars and such" style="--accent:#d2a06a;--card-border:linear-gradient(135deg, #d2a06a 0%, #62d29a 100%)" aria-label="Open help my grandma took over spotify on Spotify" data-playlist-id="5pdJmhzMJOM3EX2xXKhryy">
+  <img class="cover" src="covers/44-help-my-grandma-took-over-spotify.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">help my grandma took over spotify</h2></div>
+    <div class="card-meta" data-track-count="83"><span class="playtime">3h 50m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">traditional, guitars and such</span></div>
+    <div class="genres">Oldies, traditional pop, early rock &amp; roll</div>
+    <p class="card-description">oldies your elderly will appreciate and bake you a delicious pie because you're a nice grandchild.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/4mIEQjz20lspnIpGoZTDZv" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open shakas &amp; wipeout on Spotify" data-playlist-id="4mIEQjz20lspnIpGoZTDZv">
+  <img class="cover" src="covers/45-shakas-and-wipeout.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">shakas &amp; wipeout</h2></div>
+    <div class="card-meta" data-track-count="43"><span class="playtime">1h 50m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Surf rock, beach pop</div>
+    <p class="card-description">surf rock and some fillers which are close to being surf rock. the vibe is there.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/24NZz8a6IQXE61zEI6Bjpo" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open nerds with guitars on Spotify" data-playlist-id="24NZz8a6IQXE61zEI6Bjpo">
+  <img class="cover" src="covers/46-nerds-with-guitars.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">nerds with guitars</h2></div>
+    <div class="card-meta" data-track-count="95"><span class="playtime">8h 49m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Math rock, progressive metal, jazz fusion</div>
+    <p class="card-description">math-rock, progressive metal, it's a sport about who can waste away the most notes in 9 minutes.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/4QNEkBY4TRmt0hv1q3vC1s" target="_blank" rel="noopener noreferrer" data-categories="guitars and such" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a, #62d29a)" aria-label="Open wow i got nice shoes on Spotify" data-playlist-id="4QNEkBY4TRmt0hv1q3vC1s">
+  <img class="cover" src="covers/47-wow-i-got-nice-shoes.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">wow i got nice shoes</h2></div>
+    <div class="card-meta" data-track-count="122"><span class="playtime">10h 26m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such</span></div>
+    <div class="genres">Post-rock, shoegaze, alternative metal</div>
+    <p class="card-description">post-rock / shoe-gaze / alternative metal because no one understands what you're going through.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2EFN600CUKkAza429Rt36T" target="_blank" rel="noopener noreferrer" data-categories="guitars and such|hard" style="--accent:#62d29a;--card-border:linear-gradient(135deg, #62d29a 0%, #ff5752 100%)" aria-label="Open mwuaaarrrrggh on Spotify" data-playlist-id="2EFN600CUKkAza429Rt36T">
+  <img class="cover" src="covers/48-mwuaaarrrrggh.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">mwuaaarrrrggh</h2></div>
+    <div class="card-meta" data-track-count="128"><span class="playtime">8h 43m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">guitars and such, hard</span></div>
+    <div class="genres">Metal, death metal, nu metal, thrash metal, mathcore</div>
+    <p class="card-description">metal in all of its glory.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/40rf3URQf0qL0UQV3UGyKH" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|psy|energetic" style="--accent:#ff9b3e;--card-border:linear-gradient(135deg, #ff9b3e 0%, #c6ee4e 50%, #ffb348 100%)" aria-label="Open ride the dragon, aummmmm on Spotify" data-playlist-id="40rf3URQf0qL0UQV3UGyKH">
+  <img class="cover" src="covers/49-ride-the-dragon-aummmmm.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">ride the dragon, aummmmm</h2></div>
+    <div class="card-meta" data-track-count="46"><span class="playtime">5h 40m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">4-on-4, psy, energetic</span></div>
+    <div class="genres">Goa trance, psytrance, acid trance, progressive trance</div>
+    <p class="card-description">goa, psytrance &amp; adjacent genres. your mom told you not to drop acid but here you are..</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2mpmiaJjm7Oo8jkZJmojjT" target="_blank" rel="noopener noreferrer" data-categories="chill|psy" style="--accent:#53dfd0;--card-border:linear-gradient(135deg, #53dfd0 0%, #c6ee4e 100%)" aria-label="Open melt away into the universe on Spotify" data-playlist-id="2mpmiaJjm7Oo8jkZJmojjT">
+  <img class="cover" src="covers/50-melt-away-into-the-universe.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">melt away into the universe</h2></div>
+    <div class="card-meta" data-track-count="114"><span class="playtime">12h 50m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">chill, psy</span></div>
+    <div class="genres">Psychill, psydub, psybient, downtempo, ambient dub</div>
+    <p class="card-description">turn the UV lights on, start this psy-chill / psy-dub / psybient playlist and become one with your beanbag. you'll thank me later.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/6JO36zLoIilb1dfmmHWK0f" target="_blank" rel="noopener noreferrer" data-categories="4-on-4" style="--accent:#ff9b3e;--card-border:linear-gradient(135deg, #ff9b3e, #ff9b3e)" aria-label="Open the house party is about to start on Spotify" data-playlist-id="6JO36zLoIilb1dfmmHWK0f">
+  <img class="cover" src="covers/51-the-house-party-is-about-to-start.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">the house party is about to start</h2></div>
+    <div class="card-meta" data-track-count="174"><span class="playtime">13h 32m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">4-on-4</span></div>
+    <div class="genres">House, funky house, progressive house, electro swing, disco house</div>
+    <p class="card-description">house (both old and new, all subgenres) and some electroswing. ideal party starters with margaritas before you take off to the rave.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/6HusMt7sljxFM1ooApl3Ik" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|hard" style="--accent:#ff9b3e;--card-border:linear-gradient(135deg, #ff9b3e 0%, #ff5752 100%)" aria-label="Open oh my techno goodness on Spotify" data-playlist-id="6HusMt7sljxFM1ooApl3Ik">
+  <img class="cover" src="covers/52-oh-my-techno-goodness.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">oh my techno goodness</h2></div>
+    <div class="card-meta" data-track-count="124"><span class="playtime">12h 14m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">4-on-4, hard</span></div>
+    <div class="genres">Techno, hard techno, acid techno, industrial techno, schranz</div>
+    <p class="card-description">non-soft techno bangers.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/1OfIoXds6GvfGaJEhgdcwn" target="_blank" rel="noopener noreferrer" data-categories="4-on-4" style="--accent:#ff9b3e;--card-border:linear-gradient(135deg, #ff9b3e, #ff9b3e)" aria-label="Open submerged in 4/4 on Spotify" data-playlist-id="1OfIoXds6GvfGaJEhgdcwn">
+  <img class="cover" src="covers/53-submerged-in-4-4.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">submerged in 4/4</h2></div>
+    <div class="card-meta" data-track-count="81"><span class="playtime">9h 48m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">4-on-4</span></div>
+    <div class="genres">Dub techno, deep techno, ambient techno, minimal techno</div>
+    <p class="card-description">deep dubtechno / techdub. i should've called the playlist 'dubmerged' but it's too late now.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2yjdAx3dWTrOFmZ3FAa14V" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|chill" style="--accent:#ff9b3e;--card-border:linear-gradient(135deg, #ff9b3e 0%, #53dfd0 100%)" aria-label="Open come down at the afterparty on Spotify" data-playlist-id="2yjdAx3dWTrOFmZ3FAa14V">
+  <img class="cover" src="covers/54-come-down-at-the-afterparty.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">come down at the afterparty</h2></div>
+    <div class="card-meta" data-track-count="113"><span class="playtime">11h 49m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">4-on-4, chill</span></div>
+    <div class="genres">Minimal trance, progressive house, melodic techno, deep house</div>
+    <p class="card-description">minimal trance &amp; the like to shake off the night at 6AM wondering where your phone went</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/5YNa92sKgv2QmMt7BfqoXX" target="_blank" rel="noopener noreferrer" data-categories="4-on-4|pop|90's" style="--accent:#ff9b3e;--card-border:linear-gradient(135deg, #ff9b3e 0%, #ff6f91 50%, #ff8fab 100%)" aria-label="Open ex &amp; estrogen on Spotify" data-playlist-id="5YNa92sKgv2QmMt7BfqoXX">
+  <img class="cover" src="covers/55-ex-and-estrogen.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">ex &amp; estrogen</h2></div>
+    <div class="card-meta" data-track-count="132"><span class="playtime">9h 7m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">4-on-4, pop, 90's</span></div>
+    <div class="genres">Eurodance, classic trance, happy hardcore, 1990s dance</div>
+    <p class="card-description">.. or ex-strogen, if you will. dark times of electronic music, a.k.a eurodance &amp; some classic trance.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/45Xtl9MNlASRuK6XrWRB28" target="_blank" rel="noopener noreferrer" data-categories="hard" style="--accent:#ff5752;--card-border:linear-gradient(135deg, #ff5752, #ff5752)" aria-label="Open bald head &amp; hakkuh on Spotify" data-playlist-id="45Xtl9MNlASRuK6XrWRB28">
+  <img class="cover" src="covers/56-bald-head-and-hakkuh.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">bald head &amp; hakkuh</h2></div>
+    <div class="card-meta" data-track-count="78"><span class="playtime">5h 47m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">hard</span></div>
+    <div class="genres">Gabber, hardcore techno, industrial hardcore, early rave</div>
+    <p class="card-description">gabber / hardcore techno as the dutch intended. you know, all that thunderdome/terrordrome stuff.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/7I18IIw8SHBpJEVfgZeX9w" target="_blank" rel="noopener noreferrer" data-categories="hard|weird" style="--accent:#ff5752;--card-border:linear-gradient(135deg, #ff5752 0%, #de74ee 100%)" aria-label="Open good morning, neighbors! on Spotify" data-playlist-id="7I18IIw8SHBpJEVfgZeX9w">
+  <img class="cover" src="covers/57-good-morning-neighbors.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">good morning, neighbors!</h2></div>
+    <div class="card-meta" data-track-count="84"><span class="playtime">6h 9m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">hard, weird</span></div>
+    <div class="genres">Breakcore, digital hardcore, cybergrind, noise, extreme metal</div>
+    <p class="card-description">noise / breakcore / cybergrind / too much. i added the most uncalled-for tunes here, so if you like torture...</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/2MSGfefqtiOYDoy2QC8rmB" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--card-border:linear-gradient(135deg, #de74ee, #de74ee)" aria-label="Open gameboys &amp; synthesizers on Spotify" data-playlist-id="2MSGfefqtiOYDoy2QC8rmB">
   <img class="cover" src="covers/58-gameboys-and-synthesizers.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">gameboys &amp; synthesizers</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">gameboys &amp; synthesizers</h2></div>
+    <div class="card-meta" data-track-count="151"><span class="playtime">10h 18m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">weird</span></div>
+    <div class="genres">Chiptune, VGM, synthwave, electronic, space synth</div>
     <p class="card-description">synth music, chiptunes &amp; VGM. Vangelis met super mario in a bar and this playlist was the result.</p>
-
-    <div class="card-bottom"><span class="genres">Chiptune, VGM, synthwave, electronic, space synth</span><span class="track-count">151 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/1GyyMf0DEgSXUrhbpb74fC" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--accent-two:#de74ee" aria-label="Open i understand quantum physics! on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/1GyyMf0DEgSXUrhbpb74fC" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--card-border:linear-gradient(135deg, #de74ee, #de74ee)" aria-label="Open i understand quantum physics! on Spotify" data-playlist-id="1GyyMf0DEgSXUrhbpb74fC">
   <img class="cover" src="covers/59-i-understand-quantum-physics.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">i understand quantum physics!</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">i understand quantum physics!</h2></div>
+    <div class="card-meta" data-track-count="124"><span class="playtime">10h 15m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">weird</span></div>
+    <div class="genres">IDM, braindance, drill &amp; bass, glitch, experimental electronic</div>
     <p class="card-description">idm / braindance / drill&amp;bass / early-2000s experimental electronic. finishing this playlist grants you instant Mensa membership.</p>
-
-    <div class="card-bottom"><span class="genres">IDM, braindance, drill &amp; bass, glitch, experimental electronic</span><span class="track-count">124 tracks</span></div>
   </div>
 </a>
-<a class="playlist-card" href="https://open.spotify.com/playlist/3ICw22nfzeYnVmhcjWPd1U" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--accent-two:#de74ee" aria-label="Open lol why does this exist on Spotify">
+<a class="playlist-card" href="https://open.spotify.com/playlist/44aTbY8kxRTNuUbkXdO7Ir" target="_blank" rel="noopener noreferrer" data-categories="regional|traditional" style="--accent:#83dc62;--card-border:linear-gradient(135deg, #83dc62 0%, #d2a06a 100%)" aria-label="Open honor thy folk heritage on Spotify" data-playlist-id="44aTbY8kxRTNuUbkXdO7Ir">
+  <img class="cover" src="covers/60-honor-thy-folk-heritage.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">honor thy folk heritage</h2></div>
+    <div class="card-meta" data-track-count="95"><span class="playtime">7h 0m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">regional, traditional</span></div>
+    <div class="genres">Folk, turbofolk, klezmer, traditional, folk fusion</div>
+    <p class="card-description">from tibetan chanting to balkan turbofolk through New York klezmer and avantgarde folk-adjacent artistry. country of origin: yes.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/60yuvhVseVbJcHuBGRo90d" target="_blank" rel="noopener noreferrer" data-categories="traditional|jazzy" style="--accent:#d2a06a;--card-border:linear-gradient(135deg, #d2a06a 0%, #b8dd84 100%)" aria-label="Open saxophone a z z on Spotify" data-playlist-id="60yuvhVseVbJcHuBGRo90d">
+  <img class="cover" src="covers/61-saxophone-a-z-z.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">saxophone a z z</h2></div>
+    <div class="card-meta" data-track-count="179"><span class="playtime">16h 50m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">traditional, jazzy</span></div>
+    <div class="genres">Jazz, bebop, hard bop, cool jazz, fusion, vocal jazz</div>
+    <p class="card-description">that's right, it's the jazz cats! from old timey mellow ballads to fusion madness.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/1UioBuw0YyHHdJ9GdM3lf9" target="_blank" rel="noopener noreferrer" data-categories="traditional" style="--accent:#d2a06a;--card-border:linear-gradient(135deg, #d2a06a, #d2a06a)" aria-label="Open dead guys in wigs on Spotify" data-playlist-id="1UioBuw0YyHHdJ9GdM3lf9">
+  <img class="cover" src="covers/62-dead-guys-in-wigs.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">dead guys in wigs</h2></div>
+    <div class="card-meta" data-track-count="85"><span class="playtime">6h 30m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">traditional</span></div>
+    <div class="genres">Classical, romantic, baroque, orchestral, soundtrack</div>
+    <p class="card-description">classical music.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/0zKQWIXUpXEowaLxNbzfRr" target="_blank" rel="noopener noreferrer" data-categories="pop" style="--accent:#ff6f91;--card-border:linear-gradient(135deg, #ff6f91, #ff6f91)" aria-label="Open hey kids! do you like music? on Spotify" data-playlist-id="0zKQWIXUpXEowaLxNbzfRr">
+  <img class="cover" src="covers/63-hey-kids-do-you-like-music.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+  <div class="card-copy">
+    <div class="card-topline"><h2 class="card-title">hey kids! do you like music?</h2></div>
+    <div class="card-meta" data-track-count="82"><span class="playtime">4h 3m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">pop</span></div>
+    <div class="genres">Children's music, family pop, novelty, easy listening</div>
+    <p class="card-description">kid-friendly songs, made for kids for the most part. this will keep 'em busy for about 2 minutes.</p>
+  </div>
+</a>
+<a class="playlist-card" href="https://open.spotify.com/playlist/3ICw22nfzeYnVmhcjWPd1U" target="_blank" rel="noopener noreferrer" data-categories="weird" style="--accent:#de74ee;--card-border:linear-gradient(135deg, #de74ee, #de74ee)" aria-label="Open lol why does this exist on Spotify" data-playlist-id="3ICw22nfzeYnVmhcjWPd1U">
   <img class="cover" src="covers/64-lol-why-does-this-exist.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
   <div class="card-copy">
-    <div class="card-topline"><h3 class="card-title">lol why does this exist</h3><span class="open-mark" aria-hidden="true">↗</span></div>
+    <div class="card-topline"><h2 class="card-title">lol why does this exist</h2></div>
+    <div class="card-meta" data-track-count="125"><span class="playtime">6h 43m</span><span class="meta-separator" aria-hidden="true">·</span><span class="card-categories">weird</span></div>
+    <div class="genres">Comedy music, parody, comedy rock, meme music</div>
     <p class="card-description">it's all just a joke. fun tunes that are funnier than you will ever be.</p>
-
-    <div class="card-bottom"><span class="genres">Comedy music, parody, comedy rock, meme music</span><span class="track-count">125 tracks</span></div>
   </div>
 </a></div>
-</section></div>
+      </div>
+      <p class="empty-state" id="empty-state" hidden>No playlists match every selected category.</p>
+      <div class="all-card-wrap">
+        <a class="all-card" href="https://open.spotify.com/playlist/47ogGQAarCxutQiG0wbXDD?si=2a4d95cc24184330" target="_blank" rel="noopener noreferrer" aria-label="Open the ALL playlist on Spotify">
+          <img src="covers/00-all.jpg" alt="" width="300" height="300" loading="lazy" decoding="async">
+          <div><h2>ALL</h2><span>Everything, in one place</span></div>
+        </a>
+      </div>
+    </section>
   </main>
   <footer class="footer">
-    <span>Curated by Nagz. Built for wandering ears.</span>
-    <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Listen on Spotify ↗</a>
+    <span>vibecoded with love</span>
+    <span>powered by <a href="https://nagz.space/" target="_blank" rel="noopener noreferrer">nagz.space</a></span>
   </footer>
 </body>
 </html>

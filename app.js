@@ -1,47 +1,73 @@
-const filters = Array.from(document.querySelectorAll(".filter"));
-const areas = Array.from(document.querySelectorAll(".area"));
+const filterButtons = Array.from(document.querySelectorAll(".filter[data-filter]"));
 const cards = Array.from(document.querySelectorAll(".playlist-card"));
-const resultLabel = document.querySelector("#result-label");
+const emptyState = document.querySelector("#empty-state");
+const selected = new Set();
 
-function setFilter(category) {
-  let visibleCards = 0;
-
-  filters.forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.filter === category));
+function selectedFromUrl() {
+  const values = new URLSearchParams(location.search).get("categories");
+  if (!values) return;
+  values.split(",").forEach((value) => {
+    if (filterButtons.some((button) => button.dataset.filter === value)) selected.add(value);
   });
+}
 
-  if (category === "all") {
-    areas.forEach((area) => { area.hidden = false; });
-    cards.forEach((card) => { card.hidden = false; });
-    visibleCards = cards.length;
-  } else {
-    areas.forEach((area) => {
-      let areaHasCards = false;
-      area.querySelectorAll(".playlist-card").forEach((card) => {
-        const matches = card.dataset.categories.split("|").includes(category);
-        card.hidden = !matches;
-        areaHasCards ||= matches;
-        if (matches) visibleCards += 1;
-      });
-      area.hidden = !areaHasCards;
-    });
-  }
-
-  const current = filters.find((button) => button.dataset.filter === category);
-  resultLabel.textContent = category === "all"
-    ? `${visibleCards} playlists across every area`
-    : `${visibleCards} ${current.textContent.trim()} playlist${visibleCards === 1 ? "" : "s"}`;
-
-  const url = new URL(window.location.href);
-  if (category === "all") url.searchParams.delete("area");
-  else url.searchParams.set("area", category);
+function syncUrl() {
+  const url = new URL(location.href);
+  if (selected.size) url.searchParams.set("categories", Array.from(selected).join(","));
+  else url.searchParams.delete("categories");
   history.replaceState(null, "", url);
 }
 
-filters.forEach((button) => {
-  button.addEventListener("click", () => setFilter(button.dataset.filter));
+function applyFilters({ updateUrl = true } = {}) {
+  let shown = 0;
+  cards.forEach((card) => {
+    const cardCategories = card.dataset.categories.split("|");
+    const matches = !selected.size || Array.from(selected).every((category) => cardCategories.includes(category));
+    card.hidden = !matches;
+    if (matches) shown += 1;
+  });
+
+  filterButtons.forEach((button) => {
+    const active = button.dataset.filter === "all" ? !selected.size : selected.has(button.dataset.filter);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  emptyState.hidden = shown > 0;
+  if (updateUrl) syncUrl();
+}
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const category = button.dataset.filter;
+    if (category === "all") selected.clear();
+    else if (selected.has(category)) selected.delete(category);
+    else selected.add(category);
+    applyFilters();
+  });
 });
 
-const requestedArea = new URLSearchParams(window.location.search).get("area");
-const validArea = filters.some((button) => button.dataset.filter === requestedArea);
-setFilter(validArea ? requestedArea : "all");
+selectedFromUrl();
+applyFilters({ updateUrl: false });
+
+async function refreshPlaylistMetrics() {
+  const endpoint = document.querySelector('meta[name="playlist-metrics-endpoint"]')?.content;
+  if (!endpoint) return;
+
+  try {
+    const response = await fetch(endpoint, { headers: { accept: "application/json" } });
+    if (!response.ok) return;
+    const data = await response.json();
+    Object.entries(data.playlists || {}).forEach(([id, metrics]) => {
+      const card = document.querySelector(`.playlist-card[data-playlist-id="${id}"]`);
+      if (!card) return;
+      const meta = card.querySelector(".card-meta");
+      const playtime = card.querySelector(".playtime");
+      if (meta && Number.isFinite(metrics.tracks)) meta.dataset.trackCount = String(metrics.tracks);
+      if (playtime && typeof metrics.durationLabel === "string") playtime.textContent = metrics.durationLabel;
+    });
+  } catch {
+    // The baked-in values remain visible if the refresh endpoint is unavailable.
+  }
+}
+
+window.addEventListener("load", refreshPlaylistMetrics, { once: true });
