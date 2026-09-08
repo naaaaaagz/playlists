@@ -6,9 +6,10 @@ const selected = new Set();
 function selectedFromUrl() {
   const values = new URLSearchParams(location.search).get("categories");
   if (!values) return;
-  values.split(",").forEach((value) => {
-    if (filterButtons.some((button) => button.dataset.filter === value)) selected.add(value);
-  });
+  const category = values
+    .split(",")
+    .find((value) => value !== "all" && filterButtons.some((button) => button.dataset.filter === value));
+  if (category) selected.add(category);
 }
 
 function syncUrl() {
@@ -20,9 +21,10 @@ function syncUrl() {
 
 function applyFilters({ updateUrl = true } = {}) {
   let shown = 0;
+  const activeCategory = selected.values().next().value;
   cards.forEach((card) => {
     const cardCategories = card.dataset.categories.split("|");
-    const matches = !selected.size || Array.from(selected).every((category) => cardCategories.includes(category));
+    const matches = !activeCategory || cardCategories.includes(activeCategory);
     card.hidden = !matches;
     if (matches) shown += 1;
   });
@@ -41,7 +43,10 @@ filterButtons.forEach((button) => {
     const category = button.dataset.filter;
     if (category === "all") selected.clear();
     else if (selected.has(category)) selected.delete(category);
-    else selected.add(category);
+    else {
+      selected.clear();
+      selected.add(category);
+    }
     applyFilters();
   });
 });
