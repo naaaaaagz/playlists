@@ -182,9 +182,9 @@ a { color: inherit; }
 .filter-group + .filter-group { margin-left: 0; padding-left: 0; border-left: 0; }
 
 .filter-row:first-child .filter-group:first-child {
-  margin-right: 0.55rem;
-  padding-right: 1.1rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.13);
+  margin-right: 0;
+  padding-right: 0;
+  border-right: 0;
 }
 
 .filter {
@@ -329,13 +329,15 @@ a { color: inherit; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem var(--side) 2rem;
+  padding: 1rem var(--side);
   color: var(--soft);
+  background: rgba(3, 7, 11, 0.72);
   border-top: 1px solid rgba(255, 255, 255, 0.07);
   font-size: 0.78rem;
 }
 
 .footer a { color: #d8e1e7; text-decoration: none; }
+.heart { display: inline-block; font-size: 0.82em; line-height: 1; vertical-align: 0.02em; }
 
 @media (max-width: 70rem) {
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -349,19 +351,22 @@ a { color: inherit; }
   .topbar { min-height: 4rem; }
   .brand-logo-frame { width: 2rem; height: 2rem; }
   .filter-panel { padding-block: 0.9rem; }
-  .filters { gap: 0.6rem; }
-  .filter-row, .filter-group { gap: 0.42rem; }
+  .filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.42rem; }
+  .filter-row, .filter-group { display: contents; }
   .filter { min-height: 2.45rem; padding: 0.52rem 0.72rem; font-size: 0.76rem; }
-  .playlist-card { grid-template-columns: 7rem minmax(0, 1fr); gap: 0.78rem; }
-  .cover { width: 7rem; height: 7rem; }
-  .footer { align-items: flex-start; flex-direction: column; }
+  .playlist-card { grid-template-columns: 6rem minmax(0, 1fr); gap: 0.78rem; }
+  .cover { width: 6rem; height: 8rem; aspect-ratio: 3 / 4; }
+  .all-card { grid-template-columns: 3.5rem minmax(0, 1fr); }
+  .all-card img { width: 3.5rem; height: 4.5rem; aspect-ratio: 7 / 9; }
+  .footer { align-items: center; flex-direction: row; padding-block: 0.8rem; }
+  .footer > :last-child { margin-left: auto; text-align: right; }
 }
 
 @media (max-width: 26rem) {
   .brand { font-size: 0.86rem; }
   .topbar-meta { font-size: 0.7rem; }
-  .playlist-card { grid-template-columns: 5.5rem minmax(0, 1fr); }
-  .cover { width: 5.5rem; height: 5.5rem; }
+  .playlist-card { grid-template-columns: 5.25rem minmax(0, 1fr); }
+  .cover { width: 5.25rem; height: 7rem; }
   .card-title { font-size: 0.9rem; }
   .card-meta, .genres, .card-description { font-size: 0.72rem; }
 }
