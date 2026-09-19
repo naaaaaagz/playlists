@@ -145,6 +145,8 @@ a { color: inherit; }
   transform: translate(-8.35%, -8%);
 }
 
+.brand-title-main { white-space: nowrap; }
+
 .topbar-meta {
   flex: 0 0 auto;
   color: #d9e1e7;
@@ -348,8 +350,22 @@ a { color: inherit; }
 }
 
 @media (max-width: 42rem) {
-  .topbar { min-height: 4rem; }
+  .topbar {
+    min-height: 4rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.12rem 0.72rem;
+    padding-block: 0.62rem;
+  }
+  .brand { width: 100%; }
   .brand-logo-frame { width: 2rem; height: 2rem; }
+  .brand-title-extra { display: none; }
+  .topbar-meta {
+    width: 100%;
+    padding-left: 2.72rem;
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
   .filter-panel { padding-block: 0.9rem; }
   .filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.42rem; }
   .filter-row, .filter-group { display: contents; }
