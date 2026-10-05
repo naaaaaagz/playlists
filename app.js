@@ -1,36 +1,35 @@
 const filterButtons = Array.from(document.querySelectorAll(".filter[data-filter]"));
 const cards = Array.from(document.querySelectorAll(".playlist-card"));
 const emptyState = document.querySelector("#empty-state");
-const selected = new Set();
+const validCategories = new Set(filterButtons.map((button) => button.dataset.filter).filter((value) => value !== "all"));
+let activeCategory = null;
 
-function selectedFromUrl() {
-  const values = new URLSearchParams(location.search).get("categories");
-  if (!values) return;
-  const category = values
-    .split(",")
-    .find((value) => value !== "all" && filterButtons.some((button) => button.dataset.filter === value));
-  if (category) selected.add(category);
+function categoryFromUrl() {
+  const params = new URLSearchParams(location.search);
+  // "categories" is the older parameter name; keep old shared links working.
+  const value = params.get("category") ?? params.get("categories")?.split(",")[0];
+  return validCategories.has(value) ? value : null;
 }
 
 function syncUrl() {
   const url = new URL(location.href);
-  if (selected.size) url.searchParams.set("categories", Array.from(selected).join(","));
-  else url.searchParams.delete("categories");
+  if (activeCategory) url.searchParams.set("category", activeCategory);
+  else url.searchParams.delete("category");
+  url.searchParams.delete("categories");
   history.replaceState(null, "", url);
 }
 
-function applyFilters({ updateUrl = true } = {}) {
+function applyFilter({ updateUrl = true } = {}) {
   let shown = 0;
-  const activeCategory = selected.values().next().value;
   cards.forEach((card) => {
-    const cardCategories = card.dataset.categories.split("|");
-    const matches = !activeCategory || cardCategories.includes(activeCategory);
+    const matches = !activeCategory || card.dataset.categories.split("|").includes(activeCategory);
     card.hidden = !matches;
     if (matches) shown += 1;
   });
 
   filterButtons.forEach((button) => {
-    const active = button.dataset.filter === "all" ? !selected.size : selected.has(button.dataset.filter);
+    const value = button.dataset.filter;
+    const active = value === "all" ? !activeCategory : value === activeCategory;
     button.setAttribute("aria-pressed", String(active));
   });
 
@@ -40,39 +39,11 @@ function applyFilters({ updateUrl = true } = {}) {
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const category = button.dataset.filter;
-    if (category === "all") selected.clear();
-    else if (selected.has(category)) selected.delete(category);
-    else {
-      selected.clear();
-      selected.add(category);
-    }
-    applyFilters();
+    const value = button.dataset.filter;
+    activeCategory = value === "all" || value === activeCategory ? null : value;
+    applyFilter();
   });
 });
 
-selectedFromUrl();
-applyFilters({ updateUrl: false });
-
-async function refreshPlaylistMetrics() {
-  const endpoint = document.querySelector('meta[name="playlist-metrics-endpoint"]')?.content;
-  if (!endpoint) return;
-
-  try {
-    const response = await fetch(endpoint, { headers: { accept: "application/json" } });
-    if (!response.ok) return;
-    const data = await response.json();
-    Object.entries(data.playlists || {}).forEach(([id, metrics]) => {
-      const card = document.querySelector(`.playlist-card[data-playlist-id="${id}"]`);
-      if (!card) return;
-      const meta = card.querySelector(".card-meta");
-      const playtime = card.querySelector(".playtime");
-      if (meta && Number.isFinite(metrics.tracks)) meta.dataset.trackCount = String(metrics.tracks);
-      if (playtime && typeof metrics.durationLabel === "string") playtime.textContent = metrics.durationLabel;
-    });
-  } catch {
-    // The baked-in values remain visible if the refresh endpoint is unavailable.
-  }
-}
-
-window.addEventListener("load", refreshPlaylistMetrics, { once: true });
+activeCategory = categoryFromUrl();
+applyFilter({ updateUrl: false });

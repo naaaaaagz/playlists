@@ -7,10 +7,11 @@ const outputPath = path.join(root, "playlist-metrics.json");
 const pageSize = 50;
 
 const html = await fs.readFile(indexPath, "utf8");
-const playlists = [...html.matchAll(/<a class="playlist-card" href="https:\/\/open\.spotify\.com\/playlist\/([A-Za-z0-9]+)"[^>]*aria-label="Open ([^"]+) on Spotify"/g)]
-  .map(([, id, name]) => ({ id, name }));
+const playlists = [...html.matchAll(/<a class="playlist-card" href="https:\/\/open\.spotify\.com\/playlist\/([A-Za-z0-9]+)"[\s\S]*?<h2 class="card-title">([^<]+)/g)]
+  .map(([, id, name]) => ({ id, name: name.trim() }));
 
-if (playlists.length !== 64) throw new Error(`Expected 64 playlist cards, found ${playlists.length}.`);
+if (!playlists.length) throw new Error("No playlist cards found in index.html.");
+const width = String(playlists.length).length;
 
 const required = ["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET", "SPOTIFY_REFRESH_TOKEN"];
 const missing = required.filter((name) => !process.env[name]);
@@ -69,7 +70,7 @@ async function getMetrics({ id, name }, position, token) {
 
   const hours = Math.floor(durationMs / 3_600_000);
   const minutes = Math.floor((durationMs % 3_600_000) / 60_000);
-  process.stdout.write(`${String(position + 1).padStart(2, "0")}/64  ${name}: ${total} tracks, ${hours}h ${minutes}m\n`);
+  process.stdout.write(`${String(position + 1).padStart(width, "0")}/${playlists.length}  ${name}: ${total} tracks, ${hours}h ${minutes}m\n`);
   return [id, { tracks: total, durationMs, durationLabel: `${hours}h ${minutes}m` }];
 }
 

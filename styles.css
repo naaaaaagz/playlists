@@ -26,6 +26,7 @@ body {
 button, a { font: inherit; }
 a { color: inherit; }
 [hidden] { display: none !important; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .skip-link {
   position: fixed;
@@ -371,9 +372,9 @@ a { color: inherit; }
   .filter-row, .filter-group { display: contents; }
   .filter { min-height: 2.45rem; padding: 0.52rem 0.72rem; font-size: 0.76rem; }
   .playlist-card { grid-template-columns: 6rem minmax(0, 1fr); gap: 0.78rem; }
-  .cover { width: 6rem; height: 8rem; aspect-ratio: 3 / 4; }
+  .cover { width: 6rem; height: 6rem; }
   .all-card { grid-template-columns: 3.5rem minmax(0, 1fr); }
-  .all-card img { width: 3.5rem; height: 4.5rem; aspect-ratio: 7 / 9; }
+  .all-card img { width: 3.5rem; height: 3.5rem; }
   .footer { align-items: center; flex-direction: row; padding-block: 0.8rem; }
   .footer > :last-child { margin-left: auto; text-align: right; }
 }
@@ -382,7 +383,7 @@ a { color: inherit; }
   .brand { font-size: 0.86rem; }
   .topbar-meta { font-size: 0.7rem; }
   .playlist-card { grid-template-columns: 5.25rem minmax(0, 1fr); }
-  .cover { width: 5.25rem; height: 7rem; }
+  .cover { width: 5.25rem; height: 5.25rem; }
   .card-title { font-size: 0.9rem; }
   .card-meta, .genres, .card-description { font-size: 0.72rem; }
 }
